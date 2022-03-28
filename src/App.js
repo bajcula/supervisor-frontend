@@ -3,10 +3,7 @@ import './App.css';
 import WorkersContainerComp from './WorkersContainerComp/WorkersContainerComp';
 
 function App() {
-
-
-
-  
+ 
   return (
     <div className="App">
       <h1 id='title'><b>SUPERVISOR</b></h1>

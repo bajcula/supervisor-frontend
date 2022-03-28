@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from 'react-bootstrap/Modal'
 
 const NewWorkerComp = (props) => {
     const handleNewInputChange = (e) => {
@@ -30,7 +31,7 @@ const NewWorkerComp = (props) => {
                     firstName: "",
                     lastName: "",
                     email: "",
-                    age: 0,
+                    age: "",
                     department: "",
                     goals: "",
                     bonusTracker: 0,
@@ -40,33 +41,59 @@ const NewWorkerComp = (props) => {
                     valid:true,
                     message:""
                 })
-                props.setShowForm(false)
+                props.setShowNewModal(false)
             }
             validSubmission = true
         }
     return (
         <>
-        {props.showForm ?
-            <div id='new-worker-form'>
-                <h3>Add new worker: <button onClick={()=>props.setShowForm(!props.showForm)}>CANCEL</button></h3> <br/>
-                <form id='new-form' onSubmit={submissionNew}>
-                    { props.isValid.valid ? null : <p className="err-msg">{props.isValid.message}</p> }
-                    { props.serverError ? <p className="err-msg">{props.serverError}</p> : null }
-                    First name: <input className="input" onChange={handleNewInputChange} type='text' required name='firstName' value={props.newWorker.firstName}/>
-                    Last name: <input className="input" onChange={handleNewInputChange} type='text' required name='lastName' value={props.newWorker.lastName}/>      
-                    Email: <input className="input" onChange={handleNewInputChange} type='text' required name='email' value={props.newWorker.email}/>      
+        {props.showNewModal ?
 
-                    Age: <input className="input" onChange={handleNewInputChange} type='number' required name='age' value={props.newWorker.age}/>      
-                    Department: <input className="input" onChange={handleNewInputChange} type='text' required  name='department' value={props.newWorker.department}/>     
-                    Goals: <input className="input" onChange={handleNewInputChange} type='text' required  name='goals' value={props.newWorker.goals}/>
 
-                    Image: <input className="input" onChange={handleNewInputChange} type='text' name='img'/>
-                    <br/>Add this person to your team? <button type="submit">YES, PLEASE!</button>
-                </form>
-                
-            </div>
+<Modal
+            
+size="lg"
+show={props.showNewModal}
+onHide={() => props.setShowNewModal(false)}
+aria-labelledby="example-modal-sizes-title-lg"
+centered
+>
+    <Modal.Header 
+    closeButton>
+        <Modal.Title id="edit-title">
+            
+            <p>ADD NEW <br/>EMPLOYEE</p>
+            
+        </Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+                    <form id='new-form-modal' onSubmit={submissionNew}>
+                        { props.isValid.valid ? null : <p className="err-msg">{props.isValid.message}</p> }
+                        { props.serverError ? <p className="err-msg">{props.serverError}</p> : null }
+                            First name: <input className="input" onChange={handleNewInputChange} type='text' required name='firstName' value={props.newWorker.firstName}/> <br/>
+                            Last name: <input className="input" onChange={handleNewInputChange} type='text' required name='lastName' value={props.newWorker.lastName}/>    <br/>  
+                            Email: <input className="input" onChange={handleNewInputChange} type='text' required name='email' value={props.newWorker.email}/>   <br/>   
+                            Image Link: <input className="input" onChange={handleNewInputChange} type='text' name='img' /> <br/>
+
+                            Age: <input className="input" onChange={handleNewInputChange} type='number' required name='age' value={props.newWorker.age}/>   <br/>   
+                            Department: <input className="input" onChange={handleNewInputChange} type='text' required  name='department' value={props.newWorker.department}/> <br/>    
+                            Goals: <textarea rows='4' cols='35' className="input" onChange={handleNewInputChange} type='text' required  name='goals' value={props.newWorker.goals}/><br/>
+
+                            <br/>Add this person to your team? <button id='add-new-form-btn' type="submit">YES, PLEASE!</button>
+                    </form>
+ 
+    </Modal.Body>
+</Modal>
+
+
+
+           
+
+
+
+
         :
-            <button id='add-new-button' onClick={()=>props.setShowForm(!props.showForm)}>ADD A NEW EMPLOYEE</button>  
+            <button id='add-new-button' onClick={()=>props.setShowNewModal(!props.showNewModal)}>ADD A NEW EMPLOYEE</button>  
         }
         </>
     )

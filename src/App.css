@@ -80,18 +80,13 @@ button:active {
   margin: 10px;
   position: relative;
   padding: 5px;
+  line-height: 80%;
 }
 
 .single-workers-div {
   display: grid;
   grid-template-columns: 1fr;
   padding: 10px;
-}
-
-#new-worker-form {
-  background-image: radial-gradient(rgb(96, 14, 113) 55%, rgb(152, 42, 167));
-  padding-bottom: 30px;
-  padding-top: 30px;
 }
 
 #title {
@@ -104,35 +99,25 @@ button:active {
   display: flex;
   flex-direction: row-reverse;
   color: yellow;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 #edit-title p {
   text-align: center;
-  margin-left: 10px;
 }
-
-#new-form {
-  line-height: 250%;
+/* just leave it, it is for img in the edit form */
+#edit-title img {
+  margin-right: 20px;
 }
 
 .input {
   padding: 3px;
+  margin: 3px;
+  float: inline-end;
 }
 
-.md {
-  font-size: 26px;
-  width: auto;
-  height: auto;
-  color: black;
-  cursor: pointer;
-  position: absolute;
-  top: -8px;
-  right: 4px;
-}
-
-#see-more {
-  font-size: 24px;
-}
 .modal-header {
   background: linear-gradient(
       to bottom,
@@ -157,7 +142,8 @@ button:active {
 #example-modal-sizes-title-lg {
   font-size: 1.8rem;
   color: yellow;
-  text-align: justify;
+  text-align: center;
+  width: 100%;
 }
 
 #add-new-button {
@@ -168,13 +154,36 @@ button:active {
 
 #view-btn,
 #delete-btn,
-#edit-btn {
+#edit-btn,
+#add-new-form-btn {
   min-width: 5rem;
   margin: 10px;
   border-radius: 20px;
   padding: 10px;
   font-size: 12px;
   font-weight: 500;
+  color: black;
+}
+
+#view-btn {
+  margin-top: 0px;
+}
+
+#edit-btn,
+#delete-btn {
+  margin-top: 30px;
+}
+
+#delete-btn:hover {
+  background-color: red;
+}
+
+#submit-edit-btn {
+  min-width: 3rem;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 700;
   color: black;
 }
 
@@ -187,12 +196,7 @@ button:active {
   font-weight: 700;
   color: black;
 }
-#edit-form-modal {
-  line-height: 80%;
-}
-#edit-form-modal img {
-  margin-bottom: 10px;
-}
+
 #bonus {
   font-size: 18px;
   display: flex;
@@ -226,4 +230,10 @@ button:active {
   min-height: 30px;
   border-radius: 15px;
   text-align: center;
+}
+
+.goals-text {
+  margin-bottom: 8px;
+  text-decoration: underline;
+  font-weight: 600;
 }

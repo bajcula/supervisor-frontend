@@ -4,7 +4,7 @@ import NewWorkerComp from "./NewWorkerComp/NewWorkerComp";
 
 
 const WorkersContainerComp = () => {
-    const [showForm, setShowForm] = useState(false)
+    const [showNewModal, setShowNewModal] = useState(false)
     const [workers, setWorkers] = useState([])
     const [ServerError, setServerError] = useState("")
     const [isValid, setIsValid] = useState({valid: true, message:""})
@@ -13,7 +13,7 @@ const WorkersContainerComp = () => {
         firstName: "",
         lastName: "",
         email: "",
-        age: 0,
+        age: "",
         department: "",
         goals: "",
         bonusTracker: 0,
@@ -63,7 +63,7 @@ const WorkersContainerComp = () => {
                 setServerError(parsedResponse.data)
             }
         }catch(err){
-            console.log("front end error")
+            alert("front end error")
         }
     }
 
@@ -85,13 +85,13 @@ const WorkersContainerComp = () => {
         }
     }
 
-
     useEffect(()=> {
         async function fetchData() {
             await getWorkers()
         }
         fetchData()
     }, [])
+
     return (
         <div>
             <NewWorkerComp
@@ -102,8 +102,8 @@ const WorkersContainerComp = () => {
             isValid={isValid}
             setNewWorker={setNewWorker}
             setIsValid={setIsValid}
-            showForm={showForm}
-            setShowForm={setShowForm}
+            showNewModal={showNewModal}
+            setShowNewModal={setShowNewModal}
             />
             <h6>This is the list of your current employees.</h6>
             <div id='single-workers-div'> 

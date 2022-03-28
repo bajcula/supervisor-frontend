@@ -11,7 +11,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 library.add(faAnglesLeft, faAnglesRight, faAngleLeft, faAngleRight, faAngleUp);
 
 const SingleWorkerComp = (props) => {
-    const [showItem, setShowItem] = useState(false)
     const [lgShow, setLgShow] = useState(false);
     const [editModalShow, setEditModalShow] = useState(false)
     const [editedWorker, setEditedWorker] = useState({
@@ -37,26 +36,21 @@ const SingleWorkerComp = (props) => {
     }
     const bonusPlus = () => {
         let newBonus = editedWorker.bonusTracker + 1
-        console.log(editedWorker.bonusTracker)
-        console.log(newBonus)
-        setEditedWorker({
+        let localEdited = {
             ...editedWorker,
             bonusTracker: newBonus
-        })
-        console.log(editedWorker.bonusTracker)
-        props.updateWorker(props.worker._id, editedWorker)
+        }
+        setEditedWorker(localEdited)
+        props.updateWorker(props.worker._id, localEdited)
     }
     const bonusMinus = () => {
         let newBonus = editedWorker.bonusTracker - 1
-        console.log(editedWorker.bonusTracker)
-        console.log(newBonus)
-        setEditedWorker({
+        let localEdited = {
             ...editedWorker,
             bonusTracker: newBonus
-        })
-        console.log(editedWorker.bonusTracker)
-        props.updateWorker(props.worker._id, editedWorker)
-        
+        }
+        setEditedWorker(localEdited)
+        props.updateWorker(props.worker._id, localEdited)
     }
     const submissionEdit = (e) => {
             e.preventDefault()
@@ -91,18 +85,14 @@ const SingleWorkerComp = (props) => {
             
             <h2><b>{props.worker.firstName} {props.worker.lastName}</b></h2>
             <img height='100px' width='100px' src={props.worker.img} alt='profile-thumbnail'></img>
-            {showItem ?
-            <>
+
             
-            <p><i>Department:</i> {props.worker.department}</p>
+            <p><br/><i>Department:</i> {props.worker.department}</p>
             <p><i>Goals:</i> {props.worker.goals}</p>
             <button id='view-btn' onClick={()=>setLgShow(true)}>VIEW</button>
-            <button id='delete-btn' onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</button>
-                    <p onClick={()=>setShowItem(false)} className="md">x</p>
-            </>
-            :
-            <p id='see-more' onClick={()=>setShowItem(true)}><i>Click to see more?</i></p>
-            }
+            
+            
+
             <Modal
             size="lg"
             show={lgShow}
@@ -151,22 +141,28 @@ const SingleWorkerComp = (props) => {
                         :
                         <></>
                         }
-
-                        
                         <br/>
-
-                        
                     </p>
-                    {editedWorker.bonusTracker !== -2?
-                        <button className="plusminus" onClick={bonusMinus}>-</button>:
-                        <></>
-                        }
-                        {editedWorker.bonusTracker !== 2?
-                        <button className="plusminus" onClick={bonusPlus}>+</button>:
-                        <></>
-                        }
+                    
+                    <button
+                        disabled={editedWorker.bonusTracker === -2}
+                        className="plusminus"
+                        onClick={bonusMinus}
+                    >
+                    -
+                    </button>
+                    
+                    <button
+                        disabled={editedWorker.bonusTracker === 2}
+                        className="plusminus"
+                        onClick={bonusPlus}
+                    >
+                    +
+                    </button>
+                    
                         <br/>
                     <button id='edit-btn' onClick={openEditModal}>EDIT</button>
+                    <button id='delete-btn' onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</button>
                 
                 </Modal.Body>
             </Modal>
@@ -192,15 +188,15 @@ const SingleWorkerComp = (props) => {
                     <form id='edit-form-modal' onSubmit={submissionEdit}>
                         { props.isValid.valid ? null : <p className="err-msg">{props.isValid.message}</p> }
                         
-                        <p>Image Link: <input className="input" onChange={handleEditInputChange} type='text' name='img'/></p>
-                        <p>First Name: <input className="input" onChange={handleEditInputChange} type='text' required name='firstName' value={editedWorker.firstName}/></p>
-                        <p>Last Name: <input className="input" onChange={handleEditInputChange} type='text' required name='lastName' value={editedWorker.lastName}/></p>      
-                        <p>Email: <input className="input" onChange={handleEditInputChange} type='text' required name='email' value={editedWorker.email}/></p>      
-                        <p>Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/> </p>     
-                        <p>Department: <input className="input" onChange={handleEditInputChange} type='text' required  name='department' value={editedWorker.department}/> </p>    
-                        <p>Goals: <input className="input" onChange={handleEditInputChange} type='text' required  name='goals' value={editedWorker.goals}/> </p>    
-                        <br/>
-                        Edit employee info? <button type="submit">YES</button>
+                        First Name: <input className="input" onChange={handleEditInputChange} type='text' required name='firstName' value={editedWorker.firstName}/> <br/>
+                        Last Name: <input className="input" onChange={handleEditInputChange} type='text' required name='lastName' value={editedWorker.lastName}/> <br/>    
+                        Email: <input className="input" onChange={handleEditInputChange} type='text' required name='email' value={editedWorker.email}/> <br/>
+                        Image Link: <input className="input" onChange={handleEditInputChange} type='text' name='img'/><br/>
+
+                        Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/><br/>     
+                        Department: <input className="input" onChange={handleEditInputChange} type='text' required name='department' value={editedWorker.department}/>  <br/> 
+                        <div className="goals-text">Goals:</div> <textarea rows='5' cols='35' className="input" onChange={handleEditInputChange} type='text' required name='goals' value={editedWorker.goals}/><br/>     
+                        Edit employee info? <button id='submit-edit-btn' type="submit">YES</button>
                     </form>
                     </>
                 </Modal.Body>
