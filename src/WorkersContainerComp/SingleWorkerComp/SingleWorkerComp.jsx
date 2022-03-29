@@ -2,14 +2,14 @@ import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal'
 import { Button } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
-import { faAnglesLeft} from '@fortawesome/free-solid-svg-icons';
-import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { faAngleLeft} from '@fortawesome/free-solid-svg-icons';
-import { faAngleUp} from '@fortawesome/free-solid-svg-icons';
-import { library } from "@fortawesome/fontawesome-svg-core";
-library.add(faAnglesLeft, faAnglesRight, faAngleLeft, faAngleRight, faAngleUp);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
+// import { faAnglesLeft} from '@fortawesome/free-solid-svg-icons';
+// import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+// import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+// import { faAngleLeft} from '@fortawesome/free-solid-svg-icons';
+// import { faAngleUp} from '@fortawesome/free-solid-svg-icons';
+// import { library } from "@fortawesome/fontawesome-svg-core";
+// library.add(faAnglesLeft, faAnglesRight, faAngleLeft, faAngleRight, faAngleUp);
 
 const SingleWorkerComp = (props) => {
     const [lgShow, setLgShow] = useState(false);
@@ -26,6 +26,35 @@ const SingleWorkerComp = (props) => {
         bonusTracker: props.worker.bonusTracker,
         _id: props.worker._id
     })
+    const setBonusTo = (e) => {
+        let localEdited
+        let newSalary = Math.round(editedWorker.salary * 1.1)
+        e.preventDefault()
+        if (e.target.name === "minus1") {
+            localEdited = {
+                ...editedWorker,
+                bonusTracker: -1
+            }
+        } else if (e.target.name === "zero") {
+            localEdited = {
+                ...editedWorker,
+                bonusTracker: 0
+            }
+        } else if (e.target.name === "one") {
+            localEdited = {
+                ...editedWorker,
+                bonusTracker: 1
+            }
+        } else if (e.target.name === "two") {
+            localEdited = {
+                ...editedWorker,
+                bonusTracker: -2,
+                salary: newSalary
+            }
+        }
+        setEditedWorker(localEdited)
+        props.updateWorker(props.worker._id, localEdited)
+    }
     const openEditModal = () => {
         setEditModalShow(true)
         setLgShow(false)
@@ -38,9 +67,19 @@ const SingleWorkerComp = (props) => {
     }
     const bonusPlus = () => {
         let newBonus = editedWorker.bonusTracker + 1
-        let localEdited = {
-            ...editedWorker,
-            bonusTracker: newBonus
+        let newSalary = Math.round(editedWorker.salary * 1.1)
+        let localEdited
+        if (newBonus === 2) {
+            localEdited = {
+                ...editedWorker,
+                bonusTracker: -2,
+                salary: newSalary
+            }
+        } else {
+            localEdited = {
+                ...editedWorker,
+                bonusTracker: newBonus
+            }
         }
         setEditedWorker(localEdited)
         props.updateWorker(props.worker._id, localEdited)
@@ -112,31 +151,26 @@ const SingleWorkerComp = (props) => {
                     <p><u>Age:</u> {props.worker.age}</p>
                     <p><u>Goals:</u> {props.worker.goals}</p>
                     <p id='bonus'>
-                        <b>BONUS:</b>
-                        {editedWorker.bonusTracker === -2?
-                        <span id='minus2'><FontAwesomeIcon icon="fa-solid fa-angles-left" /></span>
+                        <b>RAISE:</b>
+
+
+                        {editedWorker.bonusTracker > -1.5?
+                        <button onClick={setBonusTo} name='minus1' className='bonus-btn-on bonus-btn'></button>
                         :
-                        <></>
+                        <button onClick={setBonusTo} name='minus1' className='bonus-btn-off bonus-btn'></button>
                         }
-                        {editedWorker.bonusTracker === -1?
-                        <span id='minus1'><FontAwesomeIcon icon="fa-solid fa-angle-left" /></span>
+                        {editedWorker.bonusTracker > -0.5?
+                        <button onClick={setBonusTo} name='zero' className='bonus-btn-on bonus-btn'></button>
                         :
-                        <></>
+                        <button onClick={setBonusTo} name='zero' className='bonus-btn-off bonus-btn'></button>
                         }
-                        {editedWorker.bonusTracker === 0?
-                        <span id='zero'><FontAwesomeIcon icon="fa-solid fa-angle-up" /></span>
+                        {editedWorker.bonusTracker > 0.5?
+                        <button onClick={setBonusTo} name='one'  className='bonus-btn-on bonus-btn'></button>
                         :
-                        <></>
+                        <button onClick={setBonusTo} name='one'  className='bonus-btn-off bonus-btn'></button>
                         }
-                        {editedWorker.bonusTracker === 1?
-                        <span id='plus1'><FontAwesomeIcon icon="fa-solid fa-angle-right" /></span>
-                        :
-                        <></>
-                        }
-                        {editedWorker.bonusTracker === 2?
-                        <span id='plus2'><FontAwesomeIcon icon="fa-solid fa-angles-right" /></span>
-                        :
-                        <></>
+                        {editedWorker.bonusTracker < 1.5 &&
+                        <button onClick={setBonusTo} name='two'  className='bonus-btn-off bonus-btn'>R</button>
                         }
                         <br/>
                     </p>
