@@ -132,6 +132,7 @@ const WorkersContainerComp = () => {
         <div>
             <div id='search-div'>
                 <TextField
+                style={{background: "rgb(150, 150, 150)"}}
                 onKeyUp={handleSearch}
                 id="search-bar"
                 label="search"
@@ -155,6 +156,7 @@ const WorkersContainerComp = () => {
             showNewModal={showNewModal}
             setShowNewModal={setShowNewModal}
             />
+            
             <h6>This is the list of your current employees.</h6>
             <div id='single-workers-div'> 
                     {searchedShow ?

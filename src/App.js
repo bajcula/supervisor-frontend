@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import WorkersContainerComp from './WorkersContainerComp/WorkersContainerComp';
+import NavbarComp from './NavbarComp/NavbarComp';
 
 function App() {
  
   return (
     <div className="App">
-      <h1 id='title'><b>SUPERVISOR</b></h1>
-      <h2 id='subtitle'>A place for all your<br/> supervising needs.</h2>
+      <NavbarComp></NavbarComp>
       <WorkersContainerComp />
     </div>
   );

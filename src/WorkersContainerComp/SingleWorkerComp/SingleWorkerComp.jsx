@@ -151,9 +151,27 @@ const SingleWorkerComp = (props) => {
                     <p><u>Age</u>: {props.worker.age}</p>
                     <p><u>Goals</u>: {props.worker.goals}</p>
                     <p id='bonus'>
-                        <u>Raise Track</u>:
+                        <div>
+                            <u>Raise Track</u>:
+                            <button
+                            disabled={editedWorker.bonusTracker === -2}
+                            className="plusminus"
+                            onClick={bonusMinus}
+                            >
+                            -
+                            </button>
+                    
+                            <button
+                            disabled={editedWorker.bonusTracker === 2}
+                            className="plusminus"
+                            onClick={bonusPlus}
+                            >
+                            +
+                            </button>
+                        </div>
+                        
 
-
+                       
                         {editedWorker.bonusTracker > -1.5?
                         <button onClick={setBonusTo} name='minus1' className='bonus-btn-on bonus-btn'></button>
                         :
@@ -175,25 +193,12 @@ const SingleWorkerComp = (props) => {
                         <br/>
                     </p>
                     
-                    <button
-                        disabled={editedWorker.bonusTracker === -2}
-                        className="plusminus"
-                        onClick={bonusMinus}
-                    >
-                    -
-                    </button>
+
+
                     
-                    <button
-                        disabled={editedWorker.bonusTracker === 2}
-                        className="plusminus"
-                        onClick={bonusPlus}
-                    >
-                    +
-                    </button>
-                    
-                        <br/>
                     <button id='edit-btn' onClick={openEditModal}>EDIT</button>
                     <button id='delete-btn' onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</button>
+ 
                 
                 </Modal.Body>
             </Modal>

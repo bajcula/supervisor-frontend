@@ -8,18 +8,8 @@
 .App {
   text-align: center;
   font-family: "Trocchi", serif;
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(0, 0, 0, 0.15) 100%
-    ),
-    radial-gradient(
-        at top center,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(0, 0, 0, 0.4) 120%
-      )
-      #989898;
-  background-blend-mode: multiply, multiply;
+  background-color: blanchedalmond;
+
   color: black;
   min-height: 100vh;
 }
@@ -81,6 +71,7 @@ button:active {
   position: relative;
   padding: 5px;
   line-height: 80%;
+  font-family: "Trocchi", serif;
 }
 
 .single-workers-div {
@@ -89,16 +80,8 @@ button:active {
   padding: 10px;
 }
 
-#title {
-  font-size: 3rem;
-  padding-top: 1rem;
-}
-#subtitle {
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-}
-
 #edit-title {
+  font-family: "Trocchi", serif;
   font-size: 1.7rem;
   display: flex;
   flex-direction: row-reverse;
@@ -136,24 +119,25 @@ button:active {
       #989898;
   background-blend-mode: multiply, multiply;
   color: cyan;
+  font-family: "Trocchi", serif;
 }
 
 .modal-body {
+  font-family: "Trocchi", serif;
   background-color: cyan;
   text-align: center;
 }
 
 #example-modal-sizes-title-lg {
+  font-family: "Trocchi", serif;
   font-size: 1.8rem;
   color: yellow;
   text-align: center;
   width: 100%;
 }
 
-#add-new-button {
-  margin: 0 auto 20px auto;
-  font-size: 10px;
-  border-radius: 18px;
+#add-new-btn {
+  margin: 0 auto 30px auto;
 }
 
 #delete-btn,
@@ -175,6 +159,9 @@ button:active {
 
 #delete-btn:hover {
   background-color: red;
+  box-shadow: 0 0 20px red;
+  -webkit-box-shadow: 0 0 20px red;
+  -moz-box-shadow: 0 0 20px red;
 }
 
 #submit-edit-btn {
@@ -187,37 +174,20 @@ button:active {
 }
 
 .plusminus {
-  min-width: 2.4rem;
-  margin: 5px 20px;
-  border-radius: 40px;
-  padding: 5px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  color: black;
+  margin: 3px;
+  width: 40px;
+  height: 25px;
+  border-radius: 15px;
+  padding: 0;
 }
 
 #bonus {
   font-size: 18px;
+  padding: 2px;
   display: flex;
   justify-content: center;
-}
-
-#plus1 {
-  color: black;
-  background-color: rgb(0, 177, 106);
-}
-
-#plus2 {
-  color: black;
-  background-color: rgb(0, 230, 64);
-}
-
-#minus1 {
-  background-color: rgb(247, 132, 130);
-}
-
-#minus2 {
-  background-color: rgb(255, 76, 48);
 }
 
 .goals-text {
@@ -238,7 +208,8 @@ button:active {
   margin-top: 5px;
 }
 #search-bar {
-  width: 80vw;
+  width: 70vw;
+  height: 20px;
   max-width: 500px;
 }
 
@@ -252,10 +223,11 @@ button:active {
   align-self: center;
   width: 50px;
   height: 25px;
-  background-color: rgba(15, 177, 0, 0.2);
+  background-color: rgba(15, 177, 0, 0.3);
   box-shadow: none;
+  border-radius: 15px;
 }
 
 .bonus-btn-on {
-  background-color: rgba(15, 177, 0, 0.8);
+  background-color: rgb(113, 254, 100);
 }
