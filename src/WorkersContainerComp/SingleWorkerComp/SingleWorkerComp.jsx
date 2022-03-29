@@ -53,6 +53,7 @@ const SingleWorkerComp = (props) => {
             }
         }
         setEditedWorker(localEdited)
+        props.setHasBeenEdited(!props.hasBeenEdited)
         props.updateWorker(props.worker._id, localEdited)
     }
     const openEditModal = () => {
@@ -83,6 +84,8 @@ const SingleWorkerComp = (props) => {
         }
         setEditedWorker(localEdited)
         props.updateWorker(props.worker._id, localEdited)
+        setLgShow(false)
+        setLgShow(true)
     }
     const bonusMinus = () => {
         let newBonus = editedWorker.bonusTracker - 1
@@ -93,8 +96,7 @@ const SingleWorkerComp = (props) => {
         setEditedWorker(localEdited)
         props.updateWorker(props.worker._id, localEdited)
     }
-    const submissionEdit = (e) => {
-            e.preventDefault()
+    const submissionEdit = () => {
             let validSubmission = true
             if (editedWorker.firstName.length < 2) {
                 props.setIsValid({
@@ -112,18 +114,19 @@ const SingleWorkerComp = (props) => {
             }
             if (validSubmission===true) {
                 props.updateWorker(props.worker._id, editedWorker)
+                
                 props.setIsValid({
                     valid:true,
                     message:""
                 })
                 setEditModalShow(false)
-                setLgShow(true)
             }
             validSubmission = true
         }
+
     return (
         <section className="single-worker">
-            <h2><b>{props.worker.firstName} {props.worker.lastName}</b></h2>
+            <h2><b>{props.worker.firstName} {props.worker.lastName} ({props.worker.age})</b></h2>
             <img height='100px' width='100px' src={props.worker.img} alt='profile-thumbnail'></img>
             <p><br/><i>Department:</i> {props.worker.department}</p>
             <p><i>Goals:</i> {props.worker.goals}</p>
@@ -141,15 +144,15 @@ const SingleWorkerComp = (props) => {
                 <Modal.Header 
                 closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        {props.worker.firstName} {props.worker.lastName}
+                        {editedWorker.firstName} {editedWorker.lastName}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p><u>Department</u>: {props.worker.department}</p>
-                    <p><u>Email</u>: {props.worker.email}</p>
-                    <p><u>Salary($)</u>: {props.worker.salary}</p>
-                    <p><u>Age</u>: {props.worker.age}</p>
-                    <p><u>Goals</u>: {props.worker.goals}</p>
+                    <p><u>Department</u>: {editedWorker.department}</p>
+                    <p><u>Email</u>: {editedWorker.email}</p>
+                    <p><u>Salary($)</u>: {editedWorker.salary}</p>
+                    <p><u>Age</u>: {editedWorker.age}</p>
+                    <p><u>Goals</u>: {editedWorker.goals}</p>
                     <p id='bonus'>
                         <>
                             <u>Raise Track</u>:

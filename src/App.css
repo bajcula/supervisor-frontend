@@ -5,6 +5,7 @@
   font-family: "Trocchi", serif;
   background-color: blanchedalmond;
   color: black;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -215,4 +216,8 @@ button:active {
 
 .bonus-btn-on {
   background-color: rgb(113, 254, 100);
+}
+
+#sort-by {
+  margin-right: 10px;
 }

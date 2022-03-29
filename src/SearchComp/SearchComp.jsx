@@ -14,6 +14,12 @@ const SearchComp = (props) => {
             variant="outlined"
             /> 
             <SplitButton
+            searhString={props.searchString}
+            searchByDeptFunc={props.searchByDeptFunc}
+            searchByNameFunc={props.searchByNameFunc}
+            handleSearch={props.handleSearch}
+            hasBeenEdited={props.hasBeenEdited}
+            setHasBeenEdited={props.setHasBeenEdited}
             setSearchByName={props.setSearchByName}
             >
             SPLIT

@@ -26,15 +26,26 @@ function SplitButton(props) {
       setSelectedIndex(index);
       console.log('in the handle menu func')
       if (index === 0) {
-        props.setSearchByName(true)
+        props.searchByNameFunc( document.getElementById('search-bar').value)
+        // props.setSearchByNameAndThenSearch(true, document.getElementById('search-bar').value )
       } else {
-          props.setSearchByName(false)
+        props.searchByDeptFunc( document.getElementById('search-bar').value)
+
+        // props.setSearchByNameAndThenSearch(true, document.getElementById('search-bar').value )
+        // props.setSearchByName(false)
+        // props.handleSearch({
+        //   target: {
+        //     value:document.getElementById('search-bar').value
+        //   }
+        // })
       }
+
       setOpen(false);
     };
   
     const handleToggle = () => {
       setOpen((prevOpen) => !prevOpen);
+      props.setHasBeenEdited(!props.hasBeenEdited)
     };
   
     const handleClose = (event) => {
@@ -44,7 +55,9 @@ function SplitButton(props) {
   
       setOpen(false);
     };
-  
+
+    
+    
     return (
       <React.Fragment>
         <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">

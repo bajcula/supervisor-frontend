@@ -12,7 +12,7 @@ import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(faCaretUp)
 
-const options = ['name', 'date added', 'salary', 'age'];
+const options = ['last name', 'salary', 'age'];
 
 function SplitButtonSort(props) {
     const [open, setOpen] = React.useState(false);
@@ -26,10 +26,13 @@ function SplitButtonSort(props) {
       setSelectedIndex(index);
       console.log('in the handle menu func')
       console.log(index)
-      if (index === 2 || index === 3) {
+      if(index === 1 || index === 2) {
         props.sortWorkers(options[index])
         console.log(options[index])
+      } else {
+        props.sortWorkers("lastName")
       }
+      
       setOpen(false);
     };
   
@@ -82,7 +85,7 @@ function SplitButtonSort(props) {
                       <MenuItem
                         
                         key={option}
-                        disabled={index === 4}
+                        disabled={index === 3}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >

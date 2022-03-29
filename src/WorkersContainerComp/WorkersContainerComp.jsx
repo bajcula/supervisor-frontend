@@ -13,6 +13,10 @@ const WorkersContainerComp = () => {
     const [ServerError, setServerError] = useState("")
     const [isValid, setIsValid] = useState({valid: true, message:""})
     const [searchByName, setSearchByName] = useState(true)
+    const [hasUpdateFuncRun, setHasUpdateFuncRun] = useState(false)
+    const [hasBeenEdited, setHasBeenEdited] = useState(false)
+    const sortOptions = ['last name', 'salary', 'age'];
+    const [initalUseEff, setInitialUseEff] = useState(false)
     const [newWorker, setNewWorker] = useState({
         firstName: "",
         lastName: "",
@@ -25,25 +29,32 @@ const WorkersContainerComp = () => {
         img: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     })
     const searchByNameFunc = (stringToSearch) => {
+        setSearchByName(true)
+        console.log(workers)
         const newSearchedWorkers = workers.filter((worker)=>worker.firstName.toUpperCase().includes(stringToSearch.toUpperCase()) || worker.lastName.toUpperCase().includes(stringToSearch.toUpperCase())) 
         setSearchedWorkers(newSearchedWorkers)
     }
     const searchByDeptFunc = (stringToSearch) => {
+        setSearchByName(false)
+        console.log(workers)
         const newSearchedWorkers = workers.filter((worker)=>worker.department.toUpperCase().includes(stringToSearch.toUpperCase())) 
         setSearchedWorkers(newSearchedWorkers)
     }
+    let searchString
     let handleSearch = (e) => {
-        e.preventDefault();
-        if (e.target.value === "") {
+        console.log('searching for e.TARGET.VALUE')
+        searchString = e.target.value
+        console.log(e.target.value)
+        console.log('search by name', searchByName)
+        if (searchString === "") {
             setSearchedShow(false)
         } else {
             setSearchedShow(true)
         }
         if (searchByName) {
-            searchByNameFunc(e.target.value)
-            console.log(e.target.value)
+            searchByNameFunc(searchString)
         } else {
-            searchByDeptFunc(e.target.value)
+            searchByDeptFunc(searchString)
         }
     }
     const addNewWorker = async (newWorker) => {
@@ -70,6 +81,7 @@ const WorkersContainerComp = () => {
         }catch(err){
             console.log(err)
         }
+        // sortWorkers("lastName")
     }
     const deleteWorker = async (idToDelete, workerToDelete) => {
         try {
@@ -101,13 +113,14 @@ const WorkersContainerComp = () => {
             }
         })
         const parsedResponse = await apiResponse.json()
-        
         if (parsedResponse.success) {
             const newWorkers = workers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
             setWorkers(newWorkers)
+            console.log(workerToUpdate.salary)
         }else {
             setServerError(parsedResponse.data)
         }
+        setHasUpdateFuncRun(!hasUpdateFuncRun)
     }
 
     const sortWorkers = (propertyName) => {
@@ -118,22 +131,20 @@ const WorkersContainerComp = () => {
             setSearchedWorkers(sortedSearchedWorkers)
         } else {
             let sortedWorkers = [...workers]
-            sortedWorkers = sortedWorkers.sort((worker1, worker2)=>{
-                console.log('it entering sorting', worker1[propertyName])
-                console.log(worker1.age)
-                return (worker1[propertyName] >= worker2[propertyName]) ? 1 : -1
-            })
+            sortedWorkers = sortedWorkers.sort((a, b)=>(a[propertyName] >= b[propertyName]) ? 1 : -1)
             setWorkers(sortedWorkers)
             console.log(sortedWorkers)
         }
     }
 
     useEffect(()=> {
+        console.log("first useeffect")
         async function fetchData() {
             await getWorkers()
         }
         fetchData()
     }, [])
+
     return (
         <div>
             <NewWorkerComp
@@ -148,6 +159,11 @@ const WorkersContainerComp = () => {
             setShowNewModal={setShowNewModal}
             />
             <SearchComp
+            searchString={searchString} 
+            searchByNameFunc={searchByNameFunc}
+            searchByDeptFunc={searchByDeptFunc}
+            hasBeenEdited={hasBeenEdited}
+            setHasBeenEdited={setHasBeenEdited}
             handleSearch={handleSearch}
             searchByName={searchByName}
             setSearchByName={setSearchByName}
@@ -155,9 +171,10 @@ const WorkersContainerComp = () => {
 
             <div id='single-workers-div'> 
                 <p>This is the list of your current employees.</p>
-                Sort by:
+                <span id='sort-by'>Sort by:</span>
                 <SplitButtonSort
                 sortWorkers={sortWorkers}
+                sortOptions={sortOptions}
                 >    
                 </SplitButtonSort>
 
@@ -166,6 +183,8 @@ const WorkersContainerComp = () => {
                     {searchedWorkers.map((worker)=>{
                         return (
                             <SingleWorkerComp
+                            hasBeenEdited={hasBeenEdited}
+                            setHasBeenEdited={setHasBeenEdited}
                             key={worker._id}
                             isValid={isValid}
                             setIsValid={setIsValid}
@@ -180,6 +199,8 @@ const WorkersContainerComp = () => {
                     {workers.map((worker)=>{
                         return (
                             <SingleWorkerComp
+                            hasBeenEdited={hasBeenEdited}
+                            setHasBeenEdited={setHasBeenEdited}
                             key={worker._id}
                             isValid={isValid}
                             setIsValid={setIsValid}
