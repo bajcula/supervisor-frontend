@@ -26,11 +26,9 @@ function SplitButton(props) {
       setSelectedIndex(index);
       console.log('in the handle menu func')
       if (index === 0) {
-          console.log('set s by name')
         props.setSearchByName(true)
       } else {
           props.setSearchByName(false)
-            console.log('set search by dept')
       }
       setOpen(false);
     };

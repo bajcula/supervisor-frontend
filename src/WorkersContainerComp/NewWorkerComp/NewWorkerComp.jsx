@@ -31,6 +31,7 @@ const NewWorkerComp = (props) => {
                     firstName: "",
                     lastName: "",
                     email: "",
+                    salary: "",
                     age: "",
                     department: "",
                     goals: "",
@@ -73,8 +74,8 @@ centered
                             First name: <input className="input" onChange={handleNewInputChange} type='text' required name='firstName' value={props.newWorker.firstName}/> <br/>
                             Last name: <input className="input" onChange={handleNewInputChange} type='text' required name='lastName' value={props.newWorker.lastName}/>    <br/>  
                             Email: <input className="input" onChange={handleNewInputChange} type='text' required name='email' value={props.newWorker.email}/>   <br/>   
+                            Salary: <input className="input" onChange={handleNewInputChange} type='text' required name='salary' value={props.newWorker.salary}/>   <br/>   
                             Image Link: <input className="input" onChange={handleNewInputChange} type='text' name='img' /> <br/>
-
                             Age: <input className="input" onChange={handleNewInputChange} type='number' required name='age' value={props.newWorker.age}/>   <br/>   
                             Department: <input className="input" onChange={handleNewInputChange} type='text' required  name='department' value={props.newWorker.department}/> <br/>    
                             <div className="goals-text">Goals:</div> <textarea rows='5' cols='35' className="input" onChange={handleNewInputChange} type='text' required name='goals' value={props.newWorker.goals}/><br/> 

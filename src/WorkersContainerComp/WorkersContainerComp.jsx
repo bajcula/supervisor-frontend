@@ -19,6 +19,7 @@ const WorkersContainerComp = () => {
         firstName: "",
         lastName: "",
         email: "",
+        salary: "",
         age: "",
         department: "",
         goals: "",
@@ -38,7 +39,7 @@ const WorkersContainerComp = () => {
 
     let handleSearch = (e) => {
         e.preventDefault();
-        if (e.target.value == "") {
+        if (e.target.value === "") {
             setSearchedShow(false)
         } else {
             setSearchedShow(true)
@@ -130,9 +131,17 @@ const WorkersContainerComp = () => {
     return (
         <div>
             <div id='search-div'>
-                <TextField onKeyUp={handleSearch} id="search-bar" label="search" variant="outlined" /> 
-                <SplitButton setSearchByName={setSearchByName}>SPLIT</SplitButton>
-
+                <TextField
+                onKeyUp={handleSearch}
+                id="search-bar"
+                label="search"
+                variant="outlined"
+                /> 
+                <SplitButton
+                setSearchByName={setSearchByName}
+                >
+                SPLIT
+                </SplitButton>
             </div>
             <br/>
             <NewWorkerComp

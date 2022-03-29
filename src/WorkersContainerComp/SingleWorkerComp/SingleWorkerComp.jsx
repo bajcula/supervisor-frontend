@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal'
-import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
@@ -19,6 +18,7 @@ const SingleWorkerComp = (props) => {
         firstName: props.worker.firstName,
         lastName: props.worker.lastName,
         email: props.worker.email,
+        salary: props.worker.salary,
         age: props.worker.age,
         img: props.worker.img,
         department: props.worker.department,
@@ -108,6 +108,7 @@ const SingleWorkerComp = (props) => {
                 <Modal.Body>
                     <p><u>Department:</u> {props.worker.department}</p>
                     <p><u>Email:</u> {props.worker.email}</p>
+                    <p><u>Yearly Salary($):</u> {props.worker.salary}</p>
                     <p><u>Age:</u> {props.worker.age}</p>
                     <p><u>Goals:</u> {props.worker.goals}</p>
                     <p id='bonus'>
@@ -187,8 +188,8 @@ const SingleWorkerComp = (props) => {
                         First Name: <input className="input" onChange={handleEditInputChange} type='text' required name='firstName' value={editedWorker.firstName}/> <br/>
                         Last Name: <input className="input" onChange={handleEditInputChange} type='text' required name='lastName' value={editedWorker.lastName}/> <br/>    
                         Email: <input className="input" onChange={handleEditInputChange} type='text' required name='email' value={editedWorker.email}/> <br/>
+                        Yearly Salary($): <input className="input" onChange={handleEditInputChange} type='number' required name='salary' value={editedWorker.salary}/> <br/>
                         Image Link: <input className="input" onChange={handleEditInputChange} type='text' name='img'/><br/>
-
                         Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/><br/>     
                         Department: <input className="input" onChange={handleEditInputChange} type='text' required name='department' value={editedWorker.department}/>  <br/> 
                         <div className="goals-text">Goals:</div> <textarea rows='5' cols='35' className="input" onChange={handleEditInputChange} type='text' required name='goals' value={editedWorker.goals}/><br/>     
