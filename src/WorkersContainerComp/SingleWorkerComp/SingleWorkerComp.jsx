@@ -151,7 +151,7 @@ const SingleWorkerComp = (props) => {
                     <p><u>Age</u>: {props.worker.age}</p>
                     <p><u>Goals</u>: {props.worker.goals}</p>
                     <p id='bonus'>
-                        <div>
+                        <>
                             <u>Raise Track</u>:
                             <button
                             disabled={editedWorker.bonusTracker === -2}
@@ -168,7 +168,7 @@ const SingleWorkerComp = (props) => {
                             >
                             +
                             </button>
-                        </div>
+                        </>
                         
 
                        

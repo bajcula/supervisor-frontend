@@ -8,13 +8,13 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-library.add(faCaretDown)
+library.add(faCaretUp)
 
-const options = ['Search by name', 'Search by department'];
+const options = ['name', 'date added', 'salary', 'age'];
 
-function SplitButton(props) {
+function SplitButtonSort(props) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -25,10 +25,10 @@ function SplitButton(props) {
     const handleMenuItemClick = (event, index) => {
       setSelectedIndex(index);
       console.log('in the handle menu func')
-      if (index === 0) {
-        props.setSearchByName(true)
-      } else {
-          props.setSearchByName(false)
+      console.log(index)
+      if (index === 2 || index === 3) {
+        props.sortWorkers(options[index])
+        console.log(options[index])
       }
       setOpen(false);
     };
@@ -57,7 +57,7 @@ function SplitButton(props) {
             aria-haspopup="menu"
             onClick={handleToggle}
           >
-           <FontAwesomeIcon icon="fa-solid fa-caret-down" />
+           <FontAwesomeIcon icon="fa-solid fa-caret-up" />
           </Button>
         </ButtonGroup>
         <Popper
@@ -82,7 +82,7 @@ function SplitButton(props) {
                       <MenuItem
                         
                         key={option}
-                        disabled={index === 2}
+                        disabled={index === 4}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
@@ -99,4 +99,4 @@ function SplitButton(props) {
     );
   }
 
-export default SplitButton
+export default SplitButtonSort

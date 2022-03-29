@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from "react";
 import SingleWorkerComp from "./SingleWorkerComp/SingleWorkerComp";
 import NewWorkerComp from "./NewWorkerComp/NewWorkerComp";
-import TextField from '@mui/material/TextField';
-import SplitButton from "./SplitButtonComp/SplitButtonComp";
+import SearchComp from "../SearchComp/SearchComp";
 
-
-
+import SplitButtonSort from "./SplitButtonComp/SplitButtonSort";
 
 const WorkersContainerComp = () => {
     const [showNewModal, setShowNewModal] = useState(false)
@@ -30,13 +28,10 @@ const WorkersContainerComp = () => {
         const newSearchedWorkers = workers.filter((worker)=>worker.firstName.toUpperCase().includes(stringToSearch.toUpperCase()) || worker.lastName.toUpperCase().includes(stringToSearch.toUpperCase())) 
         setSearchedWorkers(newSearchedWorkers)
     }
-
     const searchByDeptFunc = (stringToSearch) => {
         const newSearchedWorkers = workers.filter((worker)=>worker.department.toUpperCase().includes(stringToSearch.toUpperCase())) 
         setSearchedWorkers(newSearchedWorkers)
     }
-
-
     let handleSearch = (e) => {
         e.preventDefault();
         if (e.target.value === "") {
@@ -51,9 +46,6 @@ const WorkersContainerComp = () => {
             searchByDeptFunc(e.target.value)
         }
     }
-
-
-
     const addNewWorker = async (newWorker) => {
         const apiResponse = await fetch ("http://localhost:3001/workers", {
             method: "POST",
@@ -100,7 +92,6 @@ const WorkersContainerComp = () => {
             alert("front end error")
         }
     }
-
     const updateWorker = async (idToUpdate, workerToUpdate) => {
         const apiResponse = await fetch(`http://localhost:3001/workers/${idToUpdate}`, {
             method: "PUT",
@@ -119,7 +110,23 @@ const WorkersContainerComp = () => {
         }
     }
 
-  
+    const sortWorkers = (propertyName) => {
+        console.log('entering sort func')
+        if(searchedShow){
+            const sortedSearchedWorkers = searchedWorkers.sort((a,b)=>(a[propertyName] >= b[propertyName]) ? 1 : -1)
+            console.log('its sorting searched')
+            setSearchedWorkers(sortedSearchedWorkers)
+        } else {
+            let sortedWorkers = [...workers]
+            sortedWorkers = sortedWorkers.sort((worker1, worker2)=>{
+                console.log('it entering sorting', worker1[propertyName])
+                console.log(worker1.age)
+                return (worker1[propertyName] >= worker2[propertyName]) ? 1 : -1
+            })
+            setWorkers(sortedWorkers)
+            console.log(sortedWorkers)
+        }
+    }
 
     useEffect(()=> {
         async function fetchData() {
@@ -127,24 +134,8 @@ const WorkersContainerComp = () => {
         }
         fetchData()
     }, [])
-
     return (
         <div>
-            <div id='search-div'>
-                <TextField
-                style={{background: "rgb(150, 150, 150)"}}
-                onKeyUp={handleSearch}
-                id="search-bar"
-                label="search"
-                variant="outlined"
-                /> 
-                <SplitButton
-                setSearchByName={setSearchByName}
-                >
-                SPLIT
-                </SplitButton>
-            </div>
-            <br/>
             <NewWorkerComp
             key={"1"}
             ServerError={ServerError}
@@ -156,9 +147,20 @@ const WorkersContainerComp = () => {
             showNewModal={showNewModal}
             setShowNewModal={setShowNewModal}
             />
-            
-            <h6>This is the list of your current employees.</h6>
+            <SearchComp
+            handleSearch={handleSearch}
+            searchByName={searchByName}
+            setSearchByName={setSearchByName}
+            />    
+
             <div id='single-workers-div'> 
+                <p>This is the list of your current employees.</p>
+                Sort by:
+                <SplitButtonSort
+                sortWorkers={sortWorkers}
+                >    
+                </SplitButtonSort>
+
                     {searchedShow ?
                     <>
                     {searchedWorkers.map((worker)=>{
@@ -188,12 +190,7 @@ const WorkersContainerComp = () => {
                     })}
                     </>
                     }
-
-
-
-
             </div>
-
         </div>
     )
 }
