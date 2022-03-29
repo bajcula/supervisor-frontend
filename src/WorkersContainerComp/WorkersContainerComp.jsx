@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from "react";
 import SingleWorkerComp from "./SingleWorkerComp/SingleWorkerComp";
 import NewWorkerComp from "./NewWorkerComp/NewWorkerComp";
+import TextField from '@mui/material/TextField';
+import SplitButton from "./SplitButtonComp/SplitButtonComp";
+
+
 
 
 const WorkersContainerComp = () => {
@@ -8,7 +12,7 @@ const WorkersContainerComp = () => {
     const [workers, setWorkers] = useState([])
     const [ServerError, setServerError] = useState("")
     const [isValid, setIsValid] = useState({valid: true, message:""})
-    
+    const [searchByName, setSearchByName] = useState(true)
     const [newWorker, setNewWorker] = useState({
         firstName: "",
         lastName: "",
@@ -19,6 +23,31 @@ const WorkersContainerComp = () => {
         bonusTracker: 0,
         img: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     })
+
+    const searchByNameFunc = (localSearch) => {
+        const newSearchedWorkers = workers.filter((worker)=>worker.firstName.toUpperCase().includes(localSearch.toUpperCase()) || worker.lastName.toUpperCase().includes(localSearch.toUpperCase())) 
+        setWorkers(newSearchedWorkers)
+        console.log(workers)
+    }
+
+    const searchByDeptFunc = (localSearch) => {
+        const newSearchedWorkers = workers.filter((worker)=>worker.department.toUpperCase().includes(localSearch.toUpperCase())) 
+        setWorkers(newSearchedWorkers)
+    }
+
+
+    let handleSearch = (e) => {
+        e.preventDefault();
+        let localSearch = e.target.value
+        console.log('running')
+        if (searchByName) {
+            searchByNameFunc(localSearch)
+        } else {
+            searchByDeptFunc(localSearch)
+        }
+    }
+
+
 
     const addNewWorker = async (newWorker) => {
         const apiResponse = await fetch ("http://localhost:3001/workers", {
@@ -85,6 +114,8 @@ const WorkersContainerComp = () => {
         }
     }
 
+  
+
     useEffect(()=> {
         async function fetchData() {
             await getWorkers()
@@ -94,6 +125,12 @@ const WorkersContainerComp = () => {
 
     return (
         <div>
+            <div id='search-div'>
+                <TextField onChange={handleSearch} id="search-bar" label="search" variant="outlined" /> 
+                <SplitButton setSearchByName={setSearchByName}>SPLIT</SplitButton>
+
+            </div>
+            <br/>
             <NewWorkerComp
             key={"1"}
             ServerError={ServerError}

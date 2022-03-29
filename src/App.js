@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <h1 id='title'><b>SUPERVISOR</b></h1>
-      <h2>A place for all your supervising needs.</h2>
+      <h2 id='subtitle'>A place for all your<br/> supervising needs.</h2>
       <WorkersContainerComp />
     </div>
   );

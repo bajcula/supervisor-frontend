@@ -93,6 +93,10 @@ button:active {
   font-size: 3rem;
   padding-top: 1rem;
 }
+#subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
 
 #edit-title {
   font-size: 1.7rem;
@@ -147,12 +151,11 @@ button:active {
 }
 
 #add-new-button {
-  margin: 40px auto 20px auto;
+  margin: 0 auto 20px auto;
   font-size: 10px;
   border-radius: 18px;
 }
 
-#view-btn,
 #delete-btn,
 #edit-btn,
 #add-new-form-btn {
@@ -163,10 +166,6 @@ button:active {
   font-size: 12px;
   font-weight: 500;
   color: black;
-}
-
-#view-btn {
-  margin-top: 0px;
 }
 
 #edit-btn,
@@ -236,4 +235,20 @@ button:active {
   margin-bottom: 8px;
   text-decoration: underline;
   font-weight: 600;
+}
+
+#search-div {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: 0 auto;
+}
+#search-div button {
+  margin-top: 5px;
+}
+#search-bar {
+  width: 80vw;
+  max-width: 500px;
 }

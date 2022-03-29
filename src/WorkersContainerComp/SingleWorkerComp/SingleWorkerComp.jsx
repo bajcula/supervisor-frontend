@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal'
+import TextField from '@mui/material/TextField';
+import { Button } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
 import { faAnglesLeft} from '@fortawesome/free-solid-svg-icons';
@@ -82,24 +84,20 @@ const SingleWorkerComp = (props) => {
         }
     return (
         <section className="single-worker">
-            
             <h2><b>{props.worker.firstName} {props.worker.lastName}</b></h2>
             <img height='100px' width='100px' src={props.worker.img} alt='profile-thumbnail'></img>
-
-            
             <p><br/><i>Department:</i> {props.worker.department}</p>
             <p><i>Goals:</i> {props.worker.goals}</p>
-            <button id='view-btn' onClick={()=>setLgShow(true)}>VIEW</button>
+            <Button id='view-btn' onClick={()=>setLgShow(true)} variant="contained">
+                VIEW
+            </Button>
             
-            
-
             <Modal
             size="lg"
             show={lgShow}
             onHide={() => setLgShow(false)}
             aria-labelledby="example-modal-sizes-title-lg"
             centered
-            
             >
                 <Modal.Header 
                 closeButton>
@@ -107,14 +105,12 @@ const SingleWorkerComp = (props) => {
                         {props.worker.firstName} {props.worker.lastName}
                     </Modal.Title>
                 </Modal.Header>
-
                 <Modal.Body>
                     <p><u>Department:</u> {props.worker.department}</p>
                     <p><u>Email:</u> {props.worker.email}</p>
                     <p><u>Age:</u> {props.worker.age}</p>
                     <p><u>Goals:</u> {props.worker.goals}</p>
                     <p id='bonus'>
-
                         <b>BONUS:</b>
                         {editedWorker.bonusTracker === -2?
                         <span id='minus2'><FontAwesomeIcon icon="fa-solid fa-angles-left" /></span>
