@@ -145,32 +145,32 @@ const SingleWorkerComp = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p><u>Department:</u> {props.worker.department}</p>
-                    <p><u>Email:</u> {props.worker.email}</p>
-                    <p><u>Yearly Salary($):</u> {props.worker.salary}</p>
-                    <p><u>Age:</u> {props.worker.age}</p>
-                    <p><u>Goals:</u> {props.worker.goals}</p>
+                    <p><u>Department</u>: {props.worker.department}</p>
+                    <p><u>Email</u>: {props.worker.email}</p>
+                    <p><u>Salary($)</u>: {props.worker.salary}</p>
+                    <p><u>Age</u>: {props.worker.age}</p>
+                    <p><u>Goals</u>: {props.worker.goals}</p>
                     <p id='bonus'>
-                        <b>RAISE:</b>
+                        <u>Raise Track</u>:
 
 
                         {editedWorker.bonusTracker > -1.5?
                         <button onClick={setBonusTo} name='minus1' className='bonus-btn-on bonus-btn'></button>
                         :
-                        <button onClick={setBonusTo} name='minus1' className='bonus-btn-off bonus-btn'></button>
+                        <button onClick={setBonusTo} name='minus1' className='bonus-btn'></button>
                         }
                         {editedWorker.bonusTracker > -0.5?
                         <button onClick={setBonusTo} name='zero' className='bonus-btn-on bonus-btn'></button>
                         :
-                        <button onClick={setBonusTo} name='zero' className='bonus-btn-off bonus-btn'></button>
+                        <button onClick={setBonusTo} name='zero' className='bonus-btn'></button>
                         }
                         {editedWorker.bonusTracker > 0.5?
                         <button onClick={setBonusTo} name='one'  className='bonus-btn-on bonus-btn'></button>
                         :
-                        <button onClick={setBonusTo} name='one'  className='bonus-btn-off bonus-btn'></button>
+                        <button onClick={setBonusTo} name='one'  className='bonus-btn'></button>
                         }
                         {editedWorker.bonusTracker < 1.5 &&
-                        <button onClick={setBonusTo} name='two'  className='bonus-btn-off bonus-btn'>R</button>
+                        <button onClick={setBonusTo} name='two'  className='bonus-btn'>+10%</button>
                         }
                         <br/>
                     </p>
@@ -222,7 +222,7 @@ const SingleWorkerComp = (props) => {
                         First Name: <input className="input" onChange={handleEditInputChange} type='text' required name='firstName' value={editedWorker.firstName}/> <br/>
                         Last Name: <input className="input" onChange={handleEditInputChange} type='text' required name='lastName' value={editedWorker.lastName}/> <br/>    
                         Email: <input className="input" onChange={handleEditInputChange} type='text' required name='email' value={editedWorker.email}/> <br/>
-                        Yearly Salary($): <input className="input" onChange={handleEditInputChange} type='number' required name='salary' value={editedWorker.salary}/> <br/>
+                        Salary($): <input className="input" onChange={handleEditInputChange} type='number' required name='salary' value={editedWorker.salary}/> <br/>
                         Image Link: <input className="input" onChange={handleEditInputChange} type='text' name='img'/><br/>
                         Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/><br/>     
                         Department: <input className="input" onChange={handleEditInputChange} type='text' required name='department' value={editedWorker.department}/>  <br/> 

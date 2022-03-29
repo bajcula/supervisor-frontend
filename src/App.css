@@ -220,17 +220,6 @@ button:active {
   background-color: rgb(255, 76, 48);
 }
 
-#plus1,
-#plus2,
-#minus1,
-#minus2,
-#zero {
-  min-width: 30px;
-  min-height: 30px;
-  border-radius: 15px;
-  text-align: center;
-}
-
 .goals-text {
   margin-bottom: 8px;
   text-decoration: underline;
@@ -261,7 +250,7 @@ button:active {
   align-items: center;
   margin-left: 5px;
   align-self: center;
-  width: 40px;
+  width: 50px;
   height: 25px;
   background-color: rgba(15, 177, 0, 0.2);
   box-shadow: none;
