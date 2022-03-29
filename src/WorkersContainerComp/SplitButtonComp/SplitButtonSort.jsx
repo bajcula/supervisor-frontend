@@ -8,9 +8,9 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-library.add(faCaretUp)
+library.add(faCaretDown)
 
 const options = ['last name', 'salary', 'age'];
 
@@ -28,11 +28,9 @@ function SplitButtonSort(props) {
       console.log(index)
       if(index === 1 || index === 2) {
         props.sortWorkers(options[index])
-        console.log(options[index])
       } else {
         props.sortWorkers("lastName")
       }
-      
       setOpen(false);
     };
   
@@ -44,7 +42,6 @@ function SplitButtonSort(props) {
       if (anchorRef.current && anchorRef.current.contains(event.target)) {
         return;
       }
-  
       setOpen(false);
     };
   
@@ -60,7 +57,7 @@ function SplitButtonSort(props) {
             aria-haspopup="menu"
             onClick={handleToggle}
           >
-           <FontAwesomeIcon icon="fa-solid fa-caret-up" />
+          <FontAwesomeIcon icon="fa-solid fa-caret-down" />
           </Button>
         </ButtonGroup>
         <Popper

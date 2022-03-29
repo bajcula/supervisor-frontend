@@ -24,22 +24,12 @@ function SplitButton(props) {
   
     const handleMenuItemClick = (event, index) => {
       setSelectedIndex(index);
-      console.log('in the handle menu func')
       if (index === 0) {
         props.searchByNameFunc( document.getElementById('search-bar').value)
-        // props.setSearchByNameAndThenSearch(true, document.getElementById('search-bar').value )
+        
       } else {
         props.searchByDeptFunc( document.getElementById('search-bar').value)
-
-        // props.setSearchByNameAndThenSearch(true, document.getElementById('search-bar').value )
-        // props.setSearchByName(false)
-        // props.handleSearch({
-        //   target: {
-        //     value:document.getElementById('search-bar').value
-        //   }
-        // })
       }
-
       setOpen(false);
     };
   
@@ -52,11 +42,8 @@ function SplitButton(props) {
       if (anchorRef.current && anchorRef.current.contains(event.target)) {
         return;
       }
-  
       setOpen(false);
     };
-
-    
     
     return (
       <React.Fragment>

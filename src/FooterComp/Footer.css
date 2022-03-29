@@ -1,0 +1,26 @@
+#footer {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(0, 0, 0, 0.15) 50%
+    ),
+    radial-gradient(
+        at top center,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(0, 0, 0, 0.8) 120%
+      )
+      #989898;
+  background-blend-mode: multiply, multiply;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h6 img {
+  width: 100px;
+  margin-top: 10px;
+}
+#footer h6 {
+  font-size: 12px;
+}

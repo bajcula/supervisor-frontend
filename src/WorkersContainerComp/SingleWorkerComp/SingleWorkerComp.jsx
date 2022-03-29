@@ -2,14 +2,6 @@ import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal'
 import { Button } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
-// import { faAnglesLeft} from '@fortawesome/free-solid-svg-icons';
-// import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
-// import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
-// import { faAngleLeft} from '@fortawesome/free-solid-svg-icons';
-// import { faAngleUp} from '@fortawesome/free-solid-svg-icons';
-// import { library } from "@fortawesome/fontawesome-svg-core";
-// library.add(faAnglesLeft, faAnglesRight, faAngleLeft, faAngleRight, faAngleUp);
 
 const SingleWorkerComp = (props) => {
     const [lgShow, setLgShow] = useState(false);
@@ -84,8 +76,6 @@ const SingleWorkerComp = (props) => {
         }
         setEditedWorker(localEdited)
         props.updateWorker(props.worker._id, localEdited)
-        setLgShow(false)
-        setLgShow(true)
     }
     const bonusMinus = () => {
         let newBonus = editedWorker.bonusTracker - 1
@@ -96,7 +86,8 @@ const SingleWorkerComp = (props) => {
         setEditedWorker(localEdited)
         props.updateWorker(props.worker._id, localEdited)
     }
-    const submissionEdit = () => {
+    const submissionEdit = () => { 
+        console.log('is it')
             let validSubmission = true
             if (editedWorker.firstName.length < 2) {
                 props.setIsValid({
@@ -114,14 +105,14 @@ const SingleWorkerComp = (props) => {
             }
             if (validSubmission===true) {
                 props.updateWorker(props.worker._id, editedWorker)
-                
                 props.setIsValid({
                     valid:true,
                     message:""
                 })
                 setEditModalShow(false)
-            }
-            validSubmission = true
+                console.log('is it happening')
+                setLgShow(true)
+            }            
         }
 
     return (
@@ -172,9 +163,6 @@ const SingleWorkerComp = (props) => {
                             +
                             </button>
                         </>
-                        
-
-                       
                         {editedWorker.bonusTracker > -1.5?
                         <button onClick={setBonusTo} name='minus1' className='bonus-btn-on bonus-btn'></button>
                         :

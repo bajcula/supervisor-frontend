@@ -13,10 +13,7 @@ const WorkersContainerComp = () => {
     const [ServerError, setServerError] = useState("")
     const [isValid, setIsValid] = useState({valid: true, message:""})
     const [searchByName, setSearchByName] = useState(true)
-    const [hasUpdateFuncRun, setHasUpdateFuncRun] = useState(false)
     const [hasBeenEdited, setHasBeenEdited] = useState(false)
-    const sortOptions = ['last name', 'salary', 'age'];
-    const [initalUseEff, setInitialUseEff] = useState(false)
     const [newWorker, setNewWorker] = useState({
         firstName: "",
         lastName: "",
@@ -30,22 +27,17 @@ const WorkersContainerComp = () => {
     })
     const searchByNameFunc = (stringToSearch) => {
         setSearchByName(true)
-        console.log(workers)
         const newSearchedWorkers = workers.filter((worker)=>worker.firstName.toUpperCase().includes(stringToSearch.toUpperCase()) || worker.lastName.toUpperCase().includes(stringToSearch.toUpperCase())) 
         setSearchedWorkers(newSearchedWorkers)
     }
     const searchByDeptFunc = (stringToSearch) => {
         setSearchByName(false)
-        console.log(workers)
         const newSearchedWorkers = workers.filter((worker)=>worker.department.toUpperCase().includes(stringToSearch.toUpperCase())) 
         setSearchedWorkers(newSearchedWorkers)
     }
     let searchString
     let handleSearch = (e) => {
-        console.log('searching for e.TARGET.VALUE')
         searchString = e.target.value
-        console.log(e.target.value)
-        console.log('search by name', searchByName)
         if (searchString === "") {
             setSearchedShow(false)
         } else {
@@ -116,11 +108,9 @@ const WorkersContainerComp = () => {
         if (parsedResponse.success) {
             const newWorkers = workers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
             setWorkers(newWorkers)
-            console.log(workerToUpdate.salary)
         }else {
             setServerError(parsedResponse.data)
         }
-        setHasUpdateFuncRun(!hasUpdateFuncRun)
     }
 
     const sortWorkers = (propertyName) => {
@@ -174,7 +164,7 @@ const WorkersContainerComp = () => {
                 <span id='sort-by'>Sort by:</span>
                 <SplitButtonSort
                 sortWorkers={sortWorkers}
-                sortOptions={sortOptions}
+
                 >    
                 </SplitButtonSort>
 
