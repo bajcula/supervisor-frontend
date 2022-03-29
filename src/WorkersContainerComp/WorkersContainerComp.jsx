@@ -10,6 +10,8 @@ import SplitButton from "./SplitButtonComp/SplitButtonComp";
 const WorkersContainerComp = () => {
     const [showNewModal, setShowNewModal] = useState(false)
     const [workers, setWorkers] = useState([])
+    const [searchedShow, setSearchedShow] = useState(false)
+    const [searchedWorkers, setSearchedWorkers] = useState([])
     const [ServerError, setServerError] = useState("")
     const [isValid, setIsValid] = useState({valid: true, message:""})
     const [searchByName, setSearchByName] = useState(true)
@@ -23,27 +25,29 @@ const WorkersContainerComp = () => {
         bonusTracker: 0,
         img: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     })
-
-    const searchByNameFunc = (localSearch) => {
-        const newSearchedWorkers = workers.filter((worker)=>worker.firstName.toUpperCase().includes(localSearch.toUpperCase()) || worker.lastName.toUpperCase().includes(localSearch.toUpperCase())) 
-        setWorkers(newSearchedWorkers)
-        console.log(workers)
+    const searchByNameFunc = (stringToSearch) => {
+        const newSearchedWorkers = workers.filter((worker)=>worker.firstName.toUpperCase().includes(stringToSearch.toUpperCase()) || worker.lastName.toUpperCase().includes(stringToSearch.toUpperCase())) 
+        setSearchedWorkers(newSearchedWorkers)
     }
 
-    const searchByDeptFunc = (localSearch) => {
-        const newSearchedWorkers = workers.filter((worker)=>worker.department.toUpperCase().includes(localSearch.toUpperCase())) 
-        setWorkers(newSearchedWorkers)
+    const searchByDeptFunc = (stringToSearch) => {
+        const newSearchedWorkers = workers.filter((worker)=>worker.department.toUpperCase().includes(stringToSearch.toUpperCase())) 
+        setSearchedWorkers(newSearchedWorkers)
     }
 
 
     let handleSearch = (e) => {
         e.preventDefault();
-        let localSearch = e.target.value
-        console.log('running')
-        if (searchByName) {
-            searchByNameFunc(localSearch)
+        if (e.target.value == "") {
+            setSearchedShow(false)
         } else {
-            searchByDeptFunc(localSearch)
+            setSearchedShow(true)
+        }
+        if (searchByName) {
+            searchByNameFunc(e.target.value)
+            console.log(e.target.value)
+        } else {
+            searchByDeptFunc(e.target.value)
         }
     }
 
@@ -126,7 +130,7 @@ const WorkersContainerComp = () => {
     return (
         <div>
             <div id='search-div'>
-                <TextField onChange={handleSearch} id="search-bar" label="search" variant="outlined" /> 
+                <TextField onKeyUp={handleSearch} id="search-bar" label="search" variant="outlined" /> 
                 <SplitButton setSearchByName={setSearchByName}>SPLIT</SplitButton>
 
             </div>
@@ -144,6 +148,22 @@ const WorkersContainerComp = () => {
             />
             <h6>This is the list of your current employees.</h6>
             <div id='single-workers-div'> 
+                    {searchedShow ?
+                    <>
+                    {searchedWorkers.map((worker)=>{
+                        return (
+                            <SingleWorkerComp
+                            key={worker._id}
+                            isValid={isValid}
+                            setIsValid={setIsValid}
+                            deleteWorker={deleteWorker}
+                            worker={worker}
+                            updateWorker={updateWorker}/>
+                        )
+                    })}
+                    </>
+                    :
+                    <>
                     {workers.map((worker)=>{
                         return (
                             <SingleWorkerComp
@@ -155,6 +175,12 @@ const WorkersContainerComp = () => {
                             updateWorker={updateWorker}/>
                         )
                     })}
+                    </>
+                    }
+
+
+
+
             </div>
 
         </div>
