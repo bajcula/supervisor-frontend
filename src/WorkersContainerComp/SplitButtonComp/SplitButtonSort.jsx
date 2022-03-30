@@ -24,13 +24,13 @@ function SplitButtonSort(props) {
   
     const handleMenuItemClick = (event, index) => {
       setSelectedIndex(index);
-      console.log('in the handle menu func')
-      console.log(index)
       if(index === 1 || index === 2) {
+        console.log('sort by', options[index])
         props.sortWorkers(options[index])
       } else {
         props.sortWorkers("lastName")
       }
+      // props.setHasBeenEdited(!props.hasBeenEdited)
       setOpen(false);
     };
   

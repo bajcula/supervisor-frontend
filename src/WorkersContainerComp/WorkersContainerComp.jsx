@@ -73,7 +73,6 @@ const WorkersContainerComp = () => {
         }catch(err){
             console.log(err)
         }
-        // sortWorkers("lastName")
     }
     const deleteWorker = async (idToDelete, workerToDelete) => {
         try {
@@ -114,26 +113,24 @@ const WorkersContainerComp = () => {
     }
 
     const sortWorkers = (propertyName) => {
-        console.log('entering sort func')
         if(searchedShow){
             const sortedSearchedWorkers = searchedWorkers.sort((a,b)=>(a[propertyName] >= b[propertyName]) ? 1 : -1)
-            console.log('its sorting searched')
             setSearchedWorkers(sortedSearchedWorkers)
+            setHasBeenEdited(!hasBeenEdited)
         } else {
             let sortedWorkers = [...workers]
             sortedWorkers = sortedWorkers.sort((a, b)=>(a[propertyName] >= b[propertyName]) ? 1 : -1)
             setWorkers(sortedWorkers)
-            console.log(sortedWorkers)
         }
+        
     }
 
     useEffect(()=> {
-        console.log("first useeffect")
         async function fetchData() {
             await getWorkers()
         }
         fetchData()
-    }, [])
+    }, [hasBeenEdited])
 
     return (
         <div>
@@ -164,15 +161,18 @@ const WorkersContainerComp = () => {
                 <span id='sort-by'>Sort by:</span>
                 <SplitButtonSort
                 sortWorkers={sortWorkers}
-
+                searchedWorkers={searchedWorkers}
+                hasBeenEdited={hasBeenEdited}
+                setHasBeenEdited={setHasBeenEdited}
                 >    
                 </SplitButtonSort>
-
                     {searchedShow ?
                     <>
                     {searchedWorkers.map((worker)=>{
                         return (
                             <SingleWorkerComp
+                            searchedWorkers={searchedWorkers}
+                            setSearchedWorkers={setSearchedWorkers}
                             hasBeenEdited={hasBeenEdited}
                             setHasBeenEdited={setHasBeenEdited}
                             key={worker._id}
