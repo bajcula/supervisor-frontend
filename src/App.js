@@ -1,15 +1,14 @@
-import logo from './logo.svg';
+import { Outlet } from 'react-router-dom';
 import './App.css';
-import WorkersContainerComp from './WorkersContainerComp/WorkersContainerComp';
-import NavbarComp from './NavbarComp/NavbarComp';
 import FooterComp from './FooterComp/FooterComp';
+import NavbarComp from './NavbarComp/NavbarComp';
 
 function App() {
   return (
     <div className="App">
       <NavbarComp></NavbarComp>
-      <WorkersContainerComp />
-      <FooterComp></FooterComp>
+      <Outlet></Outlet> 
+      <FooterComp></FooterComp> 
     </div>
   );
 }

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Trocchi&display=swap");
 
+#main-page,
 .App {
   text-align: center;
   font-family: "Trocchi", serif;
@@ -255,4 +256,14 @@ button:active {
 
 #main {
   margin: 20px 10px 30px 10px;
+}
+#login {
+  width: 100px;
+  background-color: blanchedalmond;
+  align-self: center;
+}
+
+#navbar button {
+  font-size: 0.7rem;
+  margin-top: 0;
 }

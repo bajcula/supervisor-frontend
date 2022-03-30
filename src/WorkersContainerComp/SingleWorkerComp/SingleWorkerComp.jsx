@@ -7,7 +7,6 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(faEnvelope)
 
-
 const SingleWorkerComp = (props) => {
     const [lgShow, setLgShow] = useState(false);
     const [editModalShow, setEditModalShow] = useState(false)
