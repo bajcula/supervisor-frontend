@@ -53,7 +53,6 @@ const SingleWorkerComp = (props) => {
     }
     const openEditModal = () => {
         setEditModalShow(true)
-        setLgShow(false)
     }
     const handleEditInputChange = (e) => {
         setEditedWorker({

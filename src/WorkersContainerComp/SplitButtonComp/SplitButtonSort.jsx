@@ -30,7 +30,6 @@ function SplitButtonSort(props) {
       } else {
         props.sortWorkers("lastName")
       }
-      // props.setHasBeenEdited(!props.hasBeenEdited)
       setOpen(false);
     };
   
