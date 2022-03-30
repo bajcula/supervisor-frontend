@@ -107,6 +107,10 @@ const WorkersContainerComp = () => {
         if (parsedResponse.success) {
             const newWorkers = workers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
             setWorkers(newWorkers)
+            if(searchedShow) {
+                const newSearchedWorkers = searchedWorkers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
+                setSearchedWorkers(newSearchedWorkers)
+            }
         }else {
             setServerError(parsedResponse.data)
         }
