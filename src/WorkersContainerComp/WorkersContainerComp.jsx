@@ -137,7 +137,7 @@ const WorkersContainerComp = () => {
     }, [hasBeenEdited])
 
     return (
-        <div>
+        <div id='main'>
             <NewWorkerComp
             key={"1"}
             ServerError={ServerError}

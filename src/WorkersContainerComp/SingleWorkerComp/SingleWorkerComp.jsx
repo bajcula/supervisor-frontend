@@ -1,7 +1,12 @@
 import React, {useState} from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from 'react-bootstrap/Modal'
 import { Button } from "@mui/material";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+library.add(faEnvelope)
+
 
 const SingleWorkerComp = (props) => {
     const [lgShow, setLgShow] = useState(false);
@@ -138,17 +143,18 @@ const SingleWorkerComp = (props) => {
                 <Modal.Header 
                 closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        {editedWorker.firstName} {editedWorker.lastName}
+                        <p>{editedWorker.firstName}<br/> {editedWorker.lastName}</p>
+                        <img height='100px' width='100px' src={editedWorker.img} alt='profile-thumbnail'></img>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <p><u>Department</u>: {editedWorker.department}</p>
-                    <p><u>Email</u>: {editedWorker.email}</p>
+                    <p><u>Email</u>: {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </p>
                     <p><u>Salary($)</u>: {editedWorker.salary}</p>
                     <p><u>Age</u>: {editedWorker.age}</p>
                     <p><u>Goals</u>: {editedWorker.goals}</p>
                     <p id='bonus'>
-                        <>
+                        <section id='raise-control'>
                             <u>Raise Track</u>:
                             <button
                             disabled={editedWorker.bonusTracker === -2}
@@ -165,26 +171,27 @@ const SingleWorkerComp = (props) => {
                             >
                             +
                             </button>
-                        </>
-                        {editedWorker.bonusTracker > -1.5?
-                        <button onClick={setBonusTo} name='minus1' className='bonus-btn-on bonus-btn'></button>
-                        :
-                        <button onClick={setBonusTo} name='minus1' className='bonus-btn'></button>
-                        }
-                        {editedWorker.bonusTracker > -0.5?
-                        <button onClick={setBonusTo} name='zero' className='bonus-btn-on bonus-btn'></button>
-                        :
-                        <button onClick={setBonusTo} name='zero' className='bonus-btn'></button>
-                        }
-                        {editedWorker.bonusTracker > 0.5?
-                        <button onClick={setBonusTo} name='one'  className='bonus-btn-on bonus-btn'></button>
-                        :
-                        <button onClick={setBonusTo} name='one'  className='bonus-btn'></button>
-                        }
-                        {editedWorker.bonusTracker < 1.5 &&
-                        <button onClick={setBonusTo} name='two'  className='bonus-btn'>+10%</button>
-                        }
-                        <br/>
+                        </section> <br/>   
+                        <section id='section-raise'>
+                            {editedWorker.bonusTracker > -1.5?
+                            <button onClick={setBonusTo} name='minus1' className='bonus-btn-on bonus-btn'></button>
+                            :
+                            <button onClick={setBonusTo} name='minus1' className='bonus-btn'></button>
+                            }
+                            {editedWorker.bonusTracker > -0.5?
+                            <button onClick={setBonusTo} name='zero' className='bonus-btn-on bonus-btn'></button>
+                            :
+                            <button onClick={setBonusTo} name='zero' className='bonus-btn'></button>
+                            }
+                            {editedWorker.bonusTracker > 0.5?
+                            <button onClick={setBonusTo} name='one'  className='bonus-btn-on bonus-btn'></button>
+                            :
+                            <button onClick={setBonusTo} name='one'  className='bonus-btn'></button>
+                            }
+                            {editedWorker.bonusTracker < 1.5 &&
+                            <button id='perc10' onClick={setBonusTo} name='two'  className='bonus-btn'>+10%</button>
+                            }
+                        </section>
                     </p>
                     
 
