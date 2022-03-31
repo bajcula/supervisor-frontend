@@ -3,10 +3,10 @@ import { Outlet } from "react-router-dom";
 import FooterComp from "../FooterComp/FooterComp";
 import NavbarComp from "../NavbarComp/NavbarComp";
 
-const MainComp = (props) => {
+const MainComp = () => {
     return (
         <div className="App">
-            <NavbarComp currentUser={props.currentUser}></NavbarComp>
+            <NavbarComp ></NavbarComp>
             <Outlet></Outlet> 
             <FooterComp></FooterComp> 
       </div>

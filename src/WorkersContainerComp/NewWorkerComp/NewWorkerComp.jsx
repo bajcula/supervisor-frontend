@@ -4,9 +4,11 @@ import Modal from 'react-bootstrap/Modal'
 
 const NewWorkerComp = (props) => {
     const handleNewInputChange = (e) => {
+        const getUser = JSON.parse(localStorage.getItem('user'))
         props.setNewWorker({
             ...props.newWorker,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            user: getUser._id
         })
     }
     const submissionNew = (e) => {
@@ -36,6 +38,7 @@ const NewWorkerComp = (props) => {
                     age: "",
                     department: "",
                     goals: "",
+                    user: "",
                     bonusTracker: 0,
                     img: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                 })
@@ -69,7 +72,7 @@ const NewWorkerComp = (props) => {
                         First name: <input className="input" onChange={handleNewInputChange} type='text' required name='firstName' value={props.newWorker.firstName}/> <br/>
                         Last name: <input className="input" onChange={handleNewInputChange} type='text' required name='lastName' value={props.newWorker.lastName}/>    <br/>  
                         Email: <input className="input" onChange={handleNewInputChange} type='text' required name='email' value={props.newWorker.email}/>   <br/>   
-                        Salary: <input className="input" onChange={handleNewInputChange} type='text' required name='salary' value={props.newWorker.salary}/>   <br/>   
+                        Salary: <input className="input" onChange={handleNewInputChange} type='number' required name='salary' value={props.newWorker.salary}/>   <br/>   
                         Image Link: <input className="input" onChange={handleNewInputChange} type='text' name='img' /> <br/>
                         Age: <input className="input" onChange={handleNewInputChange} type='number' required name='age' value={props.newWorker.age}/>   <br/>   
                         Department: <input className="input" onChange={handleNewInputChange} type='text' required  name='department' value={props.newWorker.department}/> <br/>    

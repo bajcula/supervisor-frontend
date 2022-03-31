@@ -6,10 +6,12 @@
   font-family: "Trocchi", serif;
   background-color: blanchedalmond;
   color: black;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.App {
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -270,4 +272,19 @@ button:active {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+#not-logged-in-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+#not-logged-in-div img {
+  max-width: 80vw;
+  max-height: 30vh;
+}
+#not-logged-in-msg {
+  margin: 30px 70px;
+  font-weight: 500;
 }

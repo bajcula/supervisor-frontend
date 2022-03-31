@@ -1,0 +1,10 @@
+#quote-div {
+  margin: 10px;
+  border: 2px dashed black;
+}
+#quote-div p {
+  text-align: center;
+  text-justify: inter-character;
+  font-size: 1rem;
+  margin: 0 auto;
+}

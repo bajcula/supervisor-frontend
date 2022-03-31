@@ -5,7 +5,7 @@ import SearchComp from "../SearchComp/SearchComp";
 
 import SplitButtonSort from "./SplitButtonComp/SplitButtonSort";
 
-const WorkersContainerComp = () => {
+const WorkersContainerComp = (props) => {
     const [showNewModal, setShowNewModal] = useState(false)
     const [workers, setWorkers] = useState([])
     const [searchedShow, setSearchedShow] = useState(false)
@@ -22,6 +22,7 @@ const WorkersContainerComp = () => {
         age: "",
         department: "",
         goals: "",
+        user: "",
         bonusTracker: 0,
         img: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     })
@@ -59,21 +60,24 @@ const WorkersContainerComp = () => {
         })
         const parsedResponse = await apiResponse.json()
         console.log(parsedResponse)
+        const theCurrentUserId = await JSON.parse(localStorage.getItem('user'))._id
         if (parsedResponse.success) {
-            getWorkers()
+            getWorkers(theCurrentUserId)
         } else {
             setServerError(parsedResponse.data)
         }
     }
-    const getWorkers = async () => {
+
+    const getWorkers = async (UserId) => {
         try {
-            const workers = await fetch("http://localhost:3001/workers")
+            const workers = await fetch(`http://localhost:3001/workers/${UserId}`)
             const parsedWorkers = await workers.json()
             setWorkers(parsedWorkers.data)
         }catch(err){
             console.log(err)
         }
     }
+
     const deleteWorker = async (idToDelete, workerToDelete) => {
         try {
             const apiResponse = await fetch(`http://localhost:3001/workers/${idToDelete}`, {
@@ -126,19 +130,26 @@ const WorkersContainerComp = () => {
             sortedWorkers = sortedWorkers.sort((a, b)=>(a[propertyName] >= b[propertyName]) ? 1 : -1)
             setWorkers(sortedWorkers)
         }
-        
+    }
+
+    function fetchData() {
+        if (localStorage.getItem('user')) {
+            const getUser = JSON.parse(localStorage.getItem('user'))
+            getWorkers(getUser._id)
+        }
     }
 
     useEffect(()=> {
-        async function fetchData() {
-            await getWorkers()
-        }
         fetchData()
     }, [hasBeenEdited])
 
+    //was in the array [hasBeenEdited]
+
     return (
         <div id='main'>
+
             <NewWorkerComp
+            currentUser={props.currentUser}
             key={"1"}
             ServerError={ServerError}
             addNewWorker={addNewWorker}
@@ -175,6 +186,7 @@ const WorkersContainerComp = () => {
                     {searchedWorkers.map((worker)=>{
                         return (
                             <SingleWorkerComp
+                            searchedShow={searchedShow}
                             searchedWorkers={searchedWorkers}
                             setSearchedWorkers={setSearchedWorkers}
                             hasBeenEdited={hasBeenEdited}

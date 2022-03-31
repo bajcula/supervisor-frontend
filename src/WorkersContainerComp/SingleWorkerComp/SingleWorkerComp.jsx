@@ -51,8 +51,11 @@ const SingleWorkerComp = (props) => {
         setEditedWorker(localEdited)
         props.updateWorker(props.worker._id, localEdited)
         props.setHasBeenEdited(!props.hasBeenEdited)
-        const newSearchedWorkers = props.searchedWorkers.map(thisworker=>thisworker._id===props.worker._id? localEdited:thisworker)
-        props.setSearchedWorkers(newSearchedWorkers)
+        if (props.searchedShow) {
+            const newSearchedWorkers = props.searchedWorkers.map(thisworker=>thisworker._id===props.worker._id? localEdited:thisworker)
+            props.setSearchedWorkers(newSearchedWorkers)
+        }
+
         
     }
     const openEditModal = () => {
@@ -147,12 +150,12 @@ const SingleWorkerComp = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p><u>Department</u>: {editedWorker.department}</p>
-                    <p><u>Email</u>: {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </p>
-                    <p><u>Salary($)</u>: {editedWorker.salary}</p>
-                    <p><u>Age</u>: {editedWorker.age}</p>
-                    <p><u>Goals</u>: {editedWorker.goals}</p>
-                    <p id='bonus'>
+                    <><u>Department</u>: {editedWorker.department}</>
+                    <><u>Email</u>: {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </>
+                    <><u>Salary($)</u>: {editedWorker.salary}</>
+                    <><u>Age</u>: {editedWorker.age}</>
+                    <><u>Goals</u>: {editedWorker.goals}</>
+                    <div id='bonus'>
                         <section id='raise-control'>
                             <u>Raise Track</u>:
                             <button
@@ -191,7 +194,7 @@ const SingleWorkerComp = (props) => {
                             <button id='perc10' onClick={setBonusTo} name='two'  className='bonus-btn'>+10%</button>
                             }
                         </section>
-                    </p>
+                    </div>
                     
 
 

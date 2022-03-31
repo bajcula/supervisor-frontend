@@ -7,6 +7,33 @@ import LoginComp from './LoginComp/Login';
 import RegisterComp from './RegisterComp/RegisterComp';
 
 function App() {
+  const [quote, setQuote] = useState('');
+  const [author, setAuthor]= useState('');
+
+  const url = 'https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote?token=ipworld.info';
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Host': 'quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com',
+      'X-RapidAPI-Key': 'a41c64bc73msh742181a2ddce4f2p1a26d7jsnc319cd3ab706'
+    }
+  };
+
+const fetchQuote = async () => {
+  fetch(url, options)
+    .then(res => res.json())
+    .then(json => {
+      setQuote(json.text);
+      setAuthor(json.author)
+    })
+    .catch(err => {
+      setQuote('The morning is wiser than the evening.');
+      setAuthor('Serbian proverb')
+      console.log(err)
+    });
+}
+
   const [currentUser, setCurrentUser] = useState({})
   const [serverError, setServerError] = useState("");
   const [userIsValid, setUserIsValid] = useState(true);
@@ -42,19 +69,22 @@ function App() {
       const parsedResponse = await apiResponse.json()
       console.log(parsedResponse)
       if (parsedResponse.success) {
-        localStorage.setItem("user", parsedResponse.data)
+        localStorage.setItem("user", JSON.stringify(parsedResponse.data))
+        
         setCurrentUser(parsedResponse.data)
-        console.log(currentUser)
+        console.log(parsedResponse.data)
+        // console.log(currentUser)
       } else {
         setServerError(parsedResponse.data)
       }
     }
-    
-    
+  useEffect(()=>{
+    fetchQuote()
+  }, [])
   return (
     <Routes>
-      <Route path="/" element ={<MainComp currentUser={currentUser}></MainComp>}>
-        <Route exact path="home" element ={<MainPageComp></MainPageComp>}></Route>
+      <Route path="/" element ={<MainComp ></MainComp>}>
+        <Route exact path="home" element ={<MainPageComp quote={quote} author={author}></MainPageComp>}></Route>
         <Route exact path="/signin" element ={<LoginComp
         tryToLogin={tryToLogin}
         >
