@@ -5,13 +5,16 @@ import MainComp from './MainComp/MainComp';
 import MainPageComp from './MainPageComp/MainPageComp';
 import LoginComp from './LoginComp/Login';
 import RegisterComp from './RegisterComp/RegisterComp';
+import EditUserComp from './EditUserComp/EditUserComp';
 
 function App() {
-  const [quote, setQuote] = useState('');
-  const [author, setAuthor]= useState('');
-
+  
+  const [serverError, setServerError] = useState("");
+  const [userIsValid, setUserIsValid] = useState(true);
+  const [quote, setQuote] = useState('The morning is wiser than the evening.');
+  const [author, setAuthor]= useState('Serbian proverb');
+  const [changed, setChanged]= useState(false)
   const url = 'https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote?token=ipworld.info';
-
   const options = {
     method: 'GET',
     headers: {
@@ -24,8 +27,11 @@ const fetchQuote = async () => {
   fetch(url, options)
     .then(res => res.json())
     .then(json => {
-      setQuote(json.text);
-      setAuthor(json.author)
+      if (json) {
+        setQuote(json.text);
+        setAuthor(json.author)
+      }
+
     })
     .catch(err => {
       setQuote('The morning is wiser than the evening.');
@@ -34,9 +40,7 @@ const fetchQuote = async () => {
     });
 }
 
-  const [currentUser, setCurrentUser] = useState({})
-  const [serverError, setServerError] = useState("");
-  const [userIsValid, setUserIsValid] = useState(true);
+
   // localStorage.setItem("user", "USER OBJECT FROM BACK END")
   // localStorage.getItem("user") TRUE OR FALSE
   const addNewUser = async (newUser) => {
@@ -52,39 +56,94 @@ const fetchQuote = async () => {
     if (parsedResponse.success) {
         // LOGIN USER and REDIRECT TO /HOME
         localStorage.setItem("user", parsedResponse.data)
-        setCurrentUser(parsedResponse.data)
+
     } else {
         setServerError(parsedResponse.data)
         // REDIRECT TO /
     }
   }
-    const tryToLogin = async (possibleUser) => {
-      const apiResponse = await fetch ("http://localhost:3001/users/login", {
-        method: "POST",
-        body: JSON.stringify(possibleUser),
+
+  const updateUser = async(idToUpdate, userToUpdate) => {
+    const apiResponse = await fetch(`http://localhost:3001/users/${idToUpdate}`, {
+        method: "PUT",
+        body: JSON.stringify(userToUpdate),
         headers: {
             "Content-Type": "application/json"
         }
-      })
-      const parsedResponse = await apiResponse.json()
-      console.log(parsedResponse)
-      if (parsedResponse.success) {
-        localStorage.setItem("user", JSON.stringify(parsedResponse.data))
-        
-        setCurrentUser(parsedResponse.data)
-        console.log(parsedResponse.data)
-        // console.log(currentUser)
-      } else {
-        setServerError(parsedResponse.data)
-      }
+    })
+    const parsedResponse = await apiResponse.json()
+    if (parsedResponse.success) {
+      localStorage.setItem('user', JSON.stringify(parsedResponse.data))
+      setServerError("Update successfull.")
+    } else {
+      setServerError(parsedResponse.data)
     }
+  }
+  
+//   const updateWorker = async (idToUpdate, workerToUpdate) => {
+//     const apiResponse = await fetch(`http://localhost:3001/workers/${idToUpdate}`, {
+//         method: "PUT",
+//         body: JSON.stringify(workerToUpdate),
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     })
+//     const parsedResponse = await apiResponse.json()
+//     if (parsedResponse.success) {
+//         const newWorkers = workers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
+//         setWorkers(newWorkers)
+//         if(searchedShow) {
+//             const newSearchedWorkers = searchedWorkers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
+//             setSearchedWorkers(newSearchedWorkers)
+//         }
+//     }else {
+//         setServerError(parsedResponse.data)
+//     }
+// }
+
+
+
+
+  const tryToLogin = async (possibleUser) => {
+    const apiResponse = await fetch ("http://localhost:3001/users/login", {
+      method: "POST",
+      body: JSON.stringify(possibleUser),
+      headers: {
+          "Content-Type": "application/json"
+      }
+    })
+    const parsedResponse = await apiResponse.json()
+    console.log(parsedResponse)
+    if (parsedResponse.success) {
+      localStorage.setItem("user", JSON.stringify(parsedResponse.data))
+      
+    } else {
+      setServerError(parsedResponse.data)
+      setTimeout(()=>{
+        setServerError("")
+      }, 8000)
+    }
+    setChanged(!changed)
+  }
+  
   useEffect(()=>{
     fetchQuote()
   }, [])
+//changed, serverError make 2nd and 3rd ?? useeffect
+
   return (
     <Routes>
-      <Route path="/" element ={<MainComp ></MainComp>}>
-        <Route exact path="home" element ={<MainPageComp quote={quote} author={author}></MainPageComp>}></Route>
+      <Route path="/" element ={<MainComp serverError={serverError} ></MainComp>}>
+        <Route
+        exact path="home"
+        element ={
+          <MainPageComp
+          quote={quote}
+          author={author}
+          >
+          </MainPageComp>
+        }>
+        </Route>
         <Route exact path="/signin" element ={<LoginComp
         tryToLogin={tryToLogin}
         >
@@ -97,10 +156,17 @@ const fetchQuote = async () => {
           > 
           </RegisterComp>}>  
         </Route>
+        <Route exact path="/edit" element ={<EditUserComp
+        updateUser={updateUser}
+        userIsValid={userIsValid}
+        setUserIsValid={setUserIsValid}
+        >
+        </EditUserComp>}>
+        </Route>
         <Route
         path="*"
         element={
-        <main style={{ padding: "8rem" }}>
+        <main style={{ padding: "6rem", fontSize: "2rem" }}>
           <p>There's nothing here!</p>
         </main>
         }

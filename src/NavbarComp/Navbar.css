@@ -51,3 +51,26 @@ button:active {
 #nav-buttons-unlog button {
   min-width: 100px;
 }
+@keyframes hideAnimation {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#err-msg {
+  color: blanchedalmond;
+  animation: hideAnimation 0s ease-in 10s;
+  animation-fill-mode: forwards;
+}

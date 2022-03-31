@@ -12,7 +12,7 @@ const MainPageComp = (props) => {
             :
             <div id='not-logged-in-div'>
                 <p id='not-logged-in-msg'>Please SIGN IN in order to use our app. Thank You.</p>
-                <img src='/winding-road-sign.jpeg'></img>
+                <img src='/winding-road-sign.jpeg' alt='arrow pointing UP'></img>
             </div>
             }
             

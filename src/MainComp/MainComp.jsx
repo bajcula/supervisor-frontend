@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import FooterComp from "../FooterComp/FooterComp";
 import NavbarComp from "../NavbarComp/NavbarComp";
 
-const MainComp = () => {
+const MainComp = (props) => {
+    
+    
+    useEffect(()=>{
+        
+    } ,[props.serverError])
     return (
         <div className="App">
-            <NavbarComp ></NavbarComp>
-            <Outlet></Outlet> 
+            <NavbarComp serverError={props.serverError} ></NavbarComp>
+            <Outlet></Outlet>
             <FooterComp></FooterComp> 
       </div>
     )

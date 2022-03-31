@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 
 const LoginComp = (props) => {
     const [possibleUser, setPossibleUser] = useState({
@@ -20,10 +20,10 @@ const LoginComp = (props) => {
 
     return (
         <div id='signin'>
-            <p>This is where people log in: </p>
+            <p>Please sign in bellow: </p>
                 EMAIL:<br/> <TextField onChange={handleLoginInput} name="email" id="email-login-field"></TextField>
                 PASSWORD:<br/> <TextField onChange={handleLoginInput}  name='password' id='password-login-field'></TextField>
-            <Link to='/home'><button onClick={logInReq}>SIGN IN</button> <br/></Link>
+            <br/><Link to='/home'><Button variant="contained" onClick={logInReq}>SIGN IN</Button> <br/></Link>
         </div>
     )
 }
