@@ -51,13 +51,15 @@
 }
 
 button {
-  border-radius: 50px;
-  box-shadow: 3px 3px black;
+  border-radius: 5px;
   background-color: rgb(23, 95, 200);
-  color: blanchedalmond;
-  margin: 20px;
-  padding: 10px;
 }
+
+/* box-shadow: 3px 3px black;
+background-color: rgb(23, 95, 200);
+color: blanchedalmond;
+margin: 20px;
+padding: 10px; */
 
 button:active {
   transform: translateX(3px) translateY(3px);
@@ -263,7 +265,9 @@ button:active {
   align-self: center;
 }
 
-#navbar button {
-  font-size: 0.7rem;
-  margin-top: 0;
+#signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

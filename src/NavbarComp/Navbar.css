@@ -10,6 +10,18 @@
   padding-bottom: 20px;
   text-shadow: 2px 2px rgb(140, 140, 140);
 }
+button {
+  border-radius: 5px;
+  background-color: rgb(23, 95, 200);
+  color: blanchedalmond;
+  margin: 20px;
+  padding: 10px;
+}
+
+button:active {
+  transform: translateX(3px) translateY(3px);
+  box-shadow: none;
+}
 
 #navbar {
   background: linear-gradient(
@@ -24,4 +36,10 @@
       )
       #989898;
   background-blend-mode: multiply, multiply;
+  padding-bottom: 10px;
+}
+
+#navbar button {
+  margin: -10px 5px 10px 5px;
+  font-size: 0.7rem;
 }
