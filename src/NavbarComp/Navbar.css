@@ -70,6 +70,7 @@ button:active {
 }
 
 #err-msg {
+  margin: 10px 44px;
   color: blanchedalmond;
   animation: hideAnimation 0s ease-in 10s;
   animation-fill-mode: forwards;

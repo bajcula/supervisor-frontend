@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import './Navbar.css'
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
-
 const NavbarComp = (props) => {
-    let theCurrentUserObj = JSON.parse(localStorage.getItem('user'))
+    // let theCurrentUserObj
+    // if (localStorage.getItem('user')) {
+    //     theCurrentUserObj = JSON.parse(localStorage.getItem('user'))
+    // }
+    // let theCurrentUserObj = JSON.parse(localStorage.getItem('user'))
     // console.log(theCurrentUserObj)
     const logOut = () => {
         localStorage.clear()
@@ -18,7 +21,7 @@ const NavbarComp = (props) => {
             <h2 id='subtitle'>A place for keeping track<br/> of your employees.</h2>
             {localStorage.getItem("user")?
             <>
-            <h5>Welcome {theCurrentUserObj.firstName}!</h5>
+            {/* <h5>Welcome {theCurrentUserObj.firstName}!</h5> */}
             <section id='nav-buttons'>
                 <Link to='/home'><Button  variant="contained">HOME</Button></Link>
                 <Link to='/'><Button  variant="contained" onClick={logOut}>SIGN OUT</Button></Link>

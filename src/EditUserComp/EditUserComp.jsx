@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom'
 
 const EditUserComp = (props) => {
     const theCurrentUser = JSON.parse(localStorage.getItem('user'))
@@ -9,32 +11,25 @@ const EditUserComp = (props) => {
             [e.target.name]: e.target.value
         })
     }
+    
     const submissionEditedUser = (e) => {
         e.preventDefault()
         let validSubmission = true
         if (editedUser.firstName.length < 2) {
-            props.setUserIsValid({
-                valid:false,
-                message: "Sorry, your first name can't be a single character."
-            })
+            props.setServerError("Sorry, your first name can't be a single character.")
             validSubmission = false
         }
         if (editedUser.lastName.length < 2) {
-            props.setUserIsValid({
-                valid:false,
-                message: "Sorry, your last name can't be a single character."
-            })
+            props.setServerError("Sorry, your last name can't be a single character.")
             validSubmission = false
         }
         if (validSubmission===true) {
             props.updateUser(theCurrentUser._id, editedUser)
-            props.setUserIsValid({
-                valid:true,
-                message:"You have succesfully updated your profile."
-            })
+            props.setServerError("You have succesfully updated your profile.")
         }
         validSubmission = true
     }
+
     return (
         <div id='register-container'>
             <img height='100px' width='100px' src={theCurrentUser.img} alt='user-face'></img>
@@ -69,11 +64,12 @@ const EditUserComp = (props) => {
                 </div>
                 
 
-                <button onClick={submissionEditedUser} className="button-treat-main form-button" type="submit">Register</button>
-
+                <Button variant="contained" onClick={submissionEditedUser} type="submit">Submit</Button>
+                
             </form>
+            
         </section>
-
+        <Link to='/delete'><Button id='delete-btn' color="warning" variant="contained">DELETE</Button></Link>
     </div>
     )
 }

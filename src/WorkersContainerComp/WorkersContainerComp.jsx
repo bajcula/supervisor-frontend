@@ -141,7 +141,7 @@ const WorkersContainerComp = (props) => {
 
     useEffect(()=> {
         fetchData()
-    }, [hasBeenEdited])
+    }, [hasBeenEdited, props.changed])
 
     //was in the array [hasBeenEdited]
 

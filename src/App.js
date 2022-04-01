@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import MainComp from './MainComp/MainComp';
 import MainPageComp from './MainPageComp/MainPageComp';
 import LoginComp from './LoginComp/Login';
 import RegisterComp from './RegisterComp/RegisterComp';
 import EditUserComp from './EditUserComp/EditUserComp';
+import DeleteUserComp from './DeleteUserComp/DeleteUserComp';
 
 function App() {
-  
+  const navigate = useNavigate()
   const [serverError, setServerError] = useState("");
   const [userIsValid, setUserIsValid] = useState(true);
   const [quote, setQuote] = useState('The morning is wiser than the evening.');
@@ -27,11 +28,13 @@ const fetchQuote = async () => {
   fetch(url, options)
     .then(res => res.json())
     .then(json => {
-      if (json) {
+      if (json.message) {
+        setQuote('The morning is wiser than the evening.');
+        setAuthor('Serbian proverb')
+      } else {
         setQuote(json.text);
         setAuthor(json.author)
       }
-
     })
     .catch(err => {
       setQuote('The morning is wiser than the evening.');
@@ -54,12 +57,16 @@ const fetchQuote = async () => {
     const parsedResponse = await apiResponse.json()
     console.log(parsedResponse)
     if (parsedResponse.success) {
-        // LOGIN USER and REDIRECT TO /HOME
-        localStorage.setItem("user", parsedResponse.data)
-
+        localStorage.setItem("user", JSON.stringify(parsedResponse.data))
+        setServerError("You have successfully signed up.")
+        setTimeout(()=>{
+          setServerError("")
+        }, 8000)
     } else {
         setServerError(parsedResponse.data)
-        // REDIRECT TO /
+        setTimeout(()=>{
+          setServerError("")
+        }, 8000)
     }
   }
 
@@ -79,7 +86,51 @@ const fetchQuote = async () => {
       setServerError(parsedResponse.data)
     }
   }
-  
+  const deleteUser = async (idToDelete, userToDelete) => {
+    try {
+      const apiResponse = await fetch(`http://localhost:3001/users/${idToDelete}`, {
+        method:"DELETE",
+        body: JSON.stringify(userToDelete),
+        headers: {
+            "Content-Type": "application/json"
+        }
+      })
+      const parsedResponse = await apiResponse.json()
+      if (parsedResponse.success) {
+        setServerError('Successfully deleted. Hope to see you again.')
+        navigate('/home')
+      } else {
+        setServerError(parsedResponse.data)
+      }
+    } catch (err) {
+      setServerError("Front End Error, deletion unsuccessfull.")
+    }
+  }
+
+//   const deleteWorker = async (idToDelete, workerToDelete) => {
+//     try {
+//         const apiResponse = await fetch(`http://localhost:3001/workers/${idToDelete}`, {
+//             method:"DELETE",
+//             body: JSON.stringify(workerToDelete),
+//             headers: {
+//                 "Content-Type": "application/json"
+//             }
+//         })
+//         const parsedResponse = await apiResponse.json()
+//         console.log(parsedResponse)
+//         if (parsedResponse.success) {
+//             const newWorkers = workers.filter(worker=>worker._id!==idToDelete)
+//             setWorkers(newWorkers)
+//         }else{
+//             setServerError(parsedResponse.data)
+//         }
+//     }catch(err){
+//         alert("front end error")
+//     }
+// }
+
+
+
 //   const updateWorker = async (idToUpdate, workerToUpdate) => {
 //     const apiResponse = await fetch(`http://localhost:3001/workers/${idToUpdate}`, {
 //         method: "PUT",
@@ -116,28 +167,35 @@ const fetchQuote = async () => {
     console.log(parsedResponse)
     if (parsedResponse.success) {
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
-      
     } else {
       setServerError(parsedResponse.data)
-      setTimeout(()=>{
-        setServerError("")
-      }, 8000)
     }
     setChanged(!changed)
+    setTimeout(()=>{
+      setServerError("")
+    }, 8000)
   }
   
+  // const reset = () => {
+  //   setTimeout(()=>{
+  //     setServerError("")
+  //   }, 8000)
+  // }
+  // RESET FUNCTION
+
+
   useEffect(()=>{
     fetchQuote()
-  }, [])
-//changed, serverError make 2nd and 3rd ?? useeffect
+  }, [changed])
 
   return (
     <Routes>
       <Route path="/" element ={<MainComp serverError={serverError} ></MainComp>}>
         <Route
-        exact path="home"
+        exact path="/home"
         element ={
           <MainPageComp
+          changed={changed}
           quote={quote}
           author={author}
           >
@@ -157,11 +215,18 @@ const fetchQuote = async () => {
           </RegisterComp>}>  
         </Route>
         <Route exact path="/edit" element ={<EditUserComp
+        setServerError={setServerError}
         updateUser={updateUser}
         userIsValid={userIsValid}
         setUserIsValid={setUserIsValid}
+        deleteUser={deleteUser}
         >
         </EditUserComp>}>
+        </Route>
+        <Route exact path='/delete' element ={<DeleteUserComp
+        deleteUser={deleteUser}
+        >
+        </DeleteUserComp>}> 
         </Route>
         <Route
         path="*"

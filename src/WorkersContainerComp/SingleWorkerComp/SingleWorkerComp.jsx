@@ -199,8 +199,8 @@ const SingleWorkerComp = (props) => {
 
 
                     
-                    <button id='edit-btn' onClick={openEditModal}>EDIT</button>
-                    <button id='delete-btn' onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</button>
+                    <Button variant="contained" id='edit-btn' onClick={openEditModal}>EDIT</Button>
+                    <Button id='delete-btn' color="warning" variant="contained" onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</Button>
  
                 
                 </Modal.Body>
