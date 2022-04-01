@@ -24,7 +24,8 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.css-advny6-MuiPopper-root {
+.css-advny6-MuiPopper-root,
+.MuiList-root {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   position: absolute;
