@@ -234,7 +234,7 @@ const SingleWorkerComp = (props) => {
                         Image Link: <input className="input" onChange={handleEditInputChange} type='text' name='img'/><br/>
                         Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/><br/>     
                         Department: <input className="input" onChange={handleEditInputChange} type='text' required name='department' value={editedWorker.department}/>  <br/> 
-                        <div className="goals-text">Goals:</div> <textarea rows='5' cols='35' className="input" onChange={handleEditInputChange} type='text' required name='goals' value={editedWorker.goals}/><br/>     
+                        <div>Goals:</div> <textarea className="input" onChange={handleEditInputChange} type='text' required name='goals' value={editedWorker.goals}/><br/>     
                         Edit employee info? <Button variant="contained" type="submit">YES</Button>
                     </form>
                     </>
