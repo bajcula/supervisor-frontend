@@ -7,6 +7,7 @@ import LoginComp from './LoginComp/Login';
 import RegisterComp from './RegisterComp/RegisterComp';
 import EditUserComp from './EditUserComp/EditUserComp';
 import DeleteUserComp from './DeleteUserComp/DeleteUserComp';
+import PasswordChangeComp from './PasswordChangeComp/PasswordChangeComp';
 import apiUrl from './apiConfig';
 
 
@@ -109,6 +110,14 @@ const fetchQuote = async () => {
     }
   }
 
+  // const changePassword = async (userToUpdate, oldPass, newPass) => {
+  //   try {
+  //     const apiResponse = await
+  //   }catch(err){
+
+  //   }
+  // }
+// UPDATE PASSWORD FUNCTION 
 
 
   const tryToLogin = async (possibleUser) => {
@@ -171,6 +180,12 @@ const fetchQuote = async () => {
         deleteUser={deleteUser}
         >
         </EditUserComp>}>
+
+        </Route>
+        <Route exact path="/password" element ={<PasswordChangeComp
+        
+        >
+        </PasswordChangeComp>}>
         </Route>
         <Route exact path='/delete' element ={<DeleteUserComp
         deleteUser={deleteUser}

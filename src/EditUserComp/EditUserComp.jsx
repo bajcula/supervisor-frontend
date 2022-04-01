@@ -59,17 +59,18 @@ const EditUserComp = (props) => {
                     <input onChange={handleEditUserInputChange}  type="text" name="img"/>
                 </div>
 
-                <div className="form-row-container">
-                    Button for password change
-                </div>
+
                 
 
                 <Button variant="contained" onClick={submissionEditedUser} type="submit">Submit</Button>
                 
             </form>
+            <div className="form-row-container">
+                    <Link to='/password'><Button variant='outlined'>Change password</Button></Link>
+            </div>
             
         </section>
-        <Link to='/delete'><Button id='delete-btn' color="warning" variant="contained">DELETE</Button></Link>
+        <Link to='/delete'><Button id='delete-btn' color="warning" variant="contained">DELETE PROFILE</Button></Link>
     </div>
     )
 }
