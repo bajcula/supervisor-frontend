@@ -308,3 +308,21 @@ button:active {
   align-items: center;
   margin: 5px;
 }
+.view-modal {
+  max-width: 85%;
+}
+.edit-modal {
+  min-width: 90%;
+}
+
+#new-form-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

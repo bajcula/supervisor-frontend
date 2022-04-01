@@ -136,6 +136,7 @@ const SingleWorkerComp = (props) => {
             </Button>
             
             <Modal
+            dialogClassName="view-modal"
             size="lg"
             show={lgShow}
             onHide={() => setLgShow(false)}
@@ -206,7 +207,7 @@ const SingleWorkerComp = (props) => {
                 </Modal.Body>
             </Modal>
             <Modal
-            
+            dialogClassName="edit-modal"
             size="lg"
             show={editModalShow}
             onHide={() => setEditModalShow(false)}

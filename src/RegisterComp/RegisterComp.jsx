@@ -1,7 +1,13 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 const RegisterComp = (props) => {
+    const navigate = useNavigate()
+    if (localStorage.getItem('user')) {
+        navigate('/home')
+    }
     const [newUser, setNewUser] = useState({
         firstName: "",
         lastName: "",
@@ -81,7 +87,7 @@ const RegisterComp = (props) => {
                     </div>
                     
 
-                    <Link to='/signin'><button onClick={submissionNewUser} className="button-treat-main form-button" type="submit">Register</button></Link>
+                    <Button variant="contained" onClick={submissionNewUser} className="button-treat-main form-button" type="submit">Register</Button>
 
                 </form>
             </section>

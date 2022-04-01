@@ -151,6 +151,7 @@ const fetchQuote = async () => {
     if (parsedResponse.success) {
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
       setServerError(`Successfully logged in. Welcome!`)
+      
     } else {
       setServerError(parsedResponse.data)
     }
@@ -161,6 +162,7 @@ const fetchQuote = async () => {
 
   useEffect(()=>{
     fetchQuote()
+    navigate('/home')
   }, [])
 
   return (

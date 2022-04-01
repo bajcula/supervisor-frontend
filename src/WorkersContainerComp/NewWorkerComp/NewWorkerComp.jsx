@@ -69,15 +69,32 @@ const NewWorkerComp = (props) => {
                 <form id='new-form-modal' onSubmit={submissionNew}>
                     { props.isValid.valid ? null : <p className="err-msg">{props.isValid.message}</p> }
                     { props.serverError ? <p className="err-msg">{props.serverError}</p> : null }
-                        First name: <input className="input" onChange={handleNewInputChange} type='text' required name='firstName' value={props.newWorker.firstName}/> <br/>
-                        Last name: <input className="input" onChange={handleNewInputChange} type='text' required name='lastName' value={props.newWorker.lastName}/>    <br/>  
-                        Email: <input className="input" onChange={handleNewInputChange} type='text' required name='email' value={props.newWorker.email}/>   <br/>   
-                        Salary: <input className="input" onChange={handleNewInputChange} type='number' required name='salary' value={props.newWorker.salary}/>   <br/>   
-                        Image Link: <input className="input" onChange={handleNewInputChange} type='text' name='img' /> <br/>
-                        Age: <input className="input" onChange={handleNewInputChange} type='number' required name='age' value={props.newWorker.age}/>   <br/>   
-                        Department: <input className="input" onChange={handleNewInputChange} type='text' required  name='department' value={props.newWorker.department}/> <br/>    
-                        <div className="goals-text">Goals:</div> <textarea rows='5' cols='25' className="input" onChange={handleNewInputChange} type='text' required name='goals' value={props.newWorker.goals}/><br/> 
-                        Add this person to your team? <Button variant="contained" id='add-new-form-btn' type="submit">YES, PLEASE!</Button>
+                    <div className="new-form-row">
+                        First name: <input className="input" onChange={handleNewInputChange} type='text' required name='firstName' value={props.newWorker.firstName}/>
+                    </div>
+                    <div className="new-form-row">
+                        Last name: <input className="input" onChange={handleNewInputChange} type='text' required name='lastName' value={props.newWorker.lastName}/>   
+                    </div>
+                    <div className="new-form-row">
+                        Email: <input className="input" onChange={handleNewInputChange} type='text' required name='email' value={props.newWorker.email}/>     
+                    </div>
+                    <div className="new-form-row">    
+                        Salary: <input className="input" onChange={handleNewInputChange} type='number' required name='salary' value={props.newWorker.salary}/>   
+                    </div>   
+                    <div className="new-form-row"> 
+                        Image Link: <input className="input" onChange={handleNewInputChange} type='text' name='img' /> 
+                    </div>
+                    <div className="new-form-row">        
+                        Age: <input className="input" onChange={handleNewInputChange} type='number' required name='age' value={props.newWorker.age}/>   
+                    </div>
+                    <div className="new-form-row">        
+                        Department: <input className="input" onChange={handleNewInputChange} type='text' required  name='department' value={props.newWorker.department}/>  
+                    </div>    
+                    <div className="new-form-row">
+                        Goals: <textarea rows='3' className="input" onChange={handleNewInputChange} type='text' required name='goals' value={props.newWorker.goals}/>
+                    </div>
+                    <br/>    
+                    Add this person to your team? <Button variant="contained" id='add-new-form-btn' type="submit">YES, PLEASE!</Button>
                 </form>
             </Modal.Body>
         </Modal>

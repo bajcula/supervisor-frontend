@@ -22,7 +22,9 @@ const PasswordChangeComp = (props) => {
             props.changePassword(theCurrentUser._id, passwordsContainer.oldPass, passwordsContainer.newPass)
         } else {
             props.setServerError("Your new password fields do not match.")
-            props.resetStatus()
+            setTimeout(()=>{
+                props.setServerError("")
+            }, 8000)
         }
     } 
 
