@@ -181,11 +181,10 @@ button:active {
 }
 
 #submit-edit-btn {
-  min-width: 3rem;
-  border-radius: 5px;
+  min-width: 12rem;
   padding: 5px;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   color: blanchedalmond;
 }
 
@@ -289,4 +288,22 @@ button:active {
 
 #delete-page {
   margin: 60px;
+}
+#edit-container {
+  margin: 20px;
+}
+
+#form-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
 }

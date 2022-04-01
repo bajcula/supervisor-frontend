@@ -17,7 +17,7 @@ const NewWorkerComp = (props) => {
             if (props.newWorker.firstName.length < 2) {
                 props.setIsValid({
                     valid:false,
-                    message: "Sorry, the employee name can't be a single character."
+                    message: "Sorry, the employee first name can't be a single character."
                 })
                 validSubmission = false
             }

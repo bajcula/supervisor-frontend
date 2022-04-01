@@ -85,6 +85,8 @@ const fetchQuote = async () => {
     if (parsedResponse.success) {
       localStorage.setItem('user', JSON.stringify(parsedResponse.data))
       setServerError("Update successfull.")
+      resetStatus()
+      navigate('/home')
     } else {
       setServerError(parsedResponse.data)
     }
@@ -110,13 +112,30 @@ const fetchQuote = async () => {
     }
   }
 
-  // const changePassword = async (userToUpdate, oldPass, newPass) => {
-  //   try {
-  //     const apiResponse = await
-  //   }catch(err){
-
-  //   }
-  // }
+  const changePassword = async (idToUpdate, oldPass, newPass) => {
+    try {
+        
+        console.log(idToUpdate)
+        const apiResponse = await fetch(`${apiUrl}/users/${idToUpdate}/updatepassword`, {
+        method: "PUT",
+        body: JSON.stringify({oldPass, newPass}),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const parsedResponse = await apiResponse.json()
+    if (parsedResponse.success) {
+      localStorage.setItem("user", JSON.stringify(parsedResponse.data))
+      setServerError(`Password successfully updated.`)
+    } else {
+      setServerError(parsedResponse.data)
+    }
+    resetStatus()
+    }catch(err){
+      setServerError("Browser error, please try again.")
+      resetStatus()
+    }
+  }
 // UPDATE PASSWORD FUNCTION 
 
 
@@ -173,6 +192,7 @@ const fetchQuote = async () => {
           </RegisterComp>}>  
         </Route>
         <Route exact path="/edit" element ={<EditUserComp
+        resetStatus={resetStatus}
         setServerError={setServerError}
         updateUser={updateUser}
         userIsValid={userIsValid}
@@ -183,7 +203,9 @@ const fetchQuote = async () => {
 
         </Route>
         <Route exact path="/password" element ={<PasswordChangeComp
-        
+        changePassword={changePassword}
+        setServerError={setServerError}
+        resetStatus={resetStatus}
         >
         </PasswordChangeComp>}>
         </Route>

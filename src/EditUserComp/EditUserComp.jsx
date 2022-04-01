@@ -17,23 +17,26 @@ const EditUserComp = (props) => {
         let validSubmission = true
         if (editedUser.firstName.length < 2) {
             props.setServerError("Sorry, your first name can't be a single character.")
+            props.resetStatus()
             validSubmission = false
         }
         if (editedUser.lastName.length < 2) {
             props.setServerError("Sorry, your last name can't be a single character.")
+            props.resetStatus()
             validSubmission = false
         }
         if (validSubmission===true) {
             props.updateUser(theCurrentUser._id, editedUser)
-            props.setServerError("You have succesfully updated your profile.")
         }
+        
         validSubmission = true
     }
 
     return (
-        <div id='register-container'>
-            <img height='100px' width='100px' src={theCurrentUser.img} alt='user-face'></img>
-        <h3 className="page-title">Update your information:</h3>
+        <div id='edit-container'>
+            
+        <h4 className="page-title">Update your information</h4>
+        <img height='100px' width='100px' src={theCurrentUser.img} alt='user-foto'></img>
         <section className="form-container">
             <form className="new-user-form-container" action="/users" method="POST" encType="multipart/form-data">
 
@@ -51,18 +54,11 @@ const EditUserComp = (props) => {
                     <label htmlFor="email">Email:</label>
                     <input onChange={handleEditUserInputChange}  type="text" name="email" required value={editedUser.email}/>
                 </div>
-
-
-
                 <div className="form-row-container">
                     <label htmlFor="img">Image link:</label>
                     <input onChange={handleEditUserInputChange}  type="text" name="img"/>
                 </div>
-
-
-                
-
-                <Button variant="contained" onClick={submissionEditedUser} type="submit">Submit</Button>
+                <Button id='submit-edit-btn' variant="contained" onClick={submissionEditedUser} type="submit">Submit</Button>
                 
             </form>
             <div className="form-row-container">

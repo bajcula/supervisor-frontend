@@ -1,9 +1,10 @@
 import React from "react";
 import './Navbar.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 
 const NavbarComp = (props) => {
+    const navigate = useNavigate()
     // let theCurrentUserObj
     // if (localStorage.getItem('user')) {
     //     theCurrentUserObj = JSON.parse(localStorage.getItem('user'))
@@ -12,7 +13,7 @@ const NavbarComp = (props) => {
     // console.log(theCurrentUserObj)
     const logOut = () => {
         localStorage.clear()
-        window.location.reload()
+        navigate('/home')
     }
 
     return (
@@ -24,7 +25,7 @@ const NavbarComp = (props) => {
             {/* <h5>Welcome {theCurrentUserObj.firstName}!</h5> */}
             <section id='nav-buttons'>
                 <Link to='/home'><Button  variant="contained">HOME</Button></Link>
-                <Link to='/'><Button  variant="contained" onClick={logOut}>SIGN OUT</Button></Link>
+                <Link to='/home'><Button  variant="contained" onClick={logOut}>SIGN OUT</Button></Link>
             </section>
             <Link to='/edit'><Button  variant="contained">EDIT PROFILE</Button></Link>
             </>
