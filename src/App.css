@@ -163,19 +163,14 @@ button:active {
 }
 
 #edit-btn,
-#add-new-form-btn {
+#delete-btn {
+  margin-top: 20px;
   min-width: 5rem;
   margin: 10px;
-  border-radius: 20px;
   padding: 10px;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   color: blanchedalmond;
-}
-
-#edit-btn,
-#delete-btn {
-  margin-top: 10px;
 }
 
 #delete-btn:hover {
@@ -286,4 +281,12 @@ button:active {
 #not-logged-in-msg {
   margin: 30px 70px;
   font-weight: 500;
+}
+#raise-control {
+  display: flex;
+  gap: 10px;
+}
+
+#delete-page {
+  margin: 60px;
 }

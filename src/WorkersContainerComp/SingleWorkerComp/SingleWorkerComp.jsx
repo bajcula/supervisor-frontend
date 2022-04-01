@@ -150,14 +150,14 @@ const SingleWorkerComp = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <><u>Department</u>: {editedWorker.department}</>
-                    <><u>Email</u>: {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </>
-                    <><u>Salary($)</u>: {editedWorker.salary}</>
-                    <><u>Age</u>: {editedWorker.age}</>
-                    <><u>Goals</u>: {editedWorker.goals}</>
+                    <><i>Department:</i> {editedWorker.department}</> <br/>
+                    <><i>Email:</i> {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </><br/>
+                    <><i>Salary($)</i>: {editedWorker.salary}</><br/>
+                    <><i>Age:</i> {editedWorker.age}</><br/>
+                    <><i>Goals:</i> {editedWorker.goals}</><br/><br/>
                     <div id='bonus'>
                         <section id='raise-control'>
-                            <u>Raise Track</u>:
+                            <i>Raise Track:</i>
                             <button
                             disabled={editedWorker.bonusTracker === -2}
                             className="plusminus"
@@ -198,8 +198,8 @@ const SingleWorkerComp = (props) => {
                     
 
 
-                    
-                    <Button variant="contained" id='edit-btn' onClick={openEditModal}>EDIT</Button>
+                    <br/>
+                    <Button id='edit-btn' variant="contained" onClick={openEditModal}>EDIT</Button>
                     <Button id='delete-btn' color="warning" variant="contained" onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</Button>
  
                 
@@ -235,7 +235,7 @@ const SingleWorkerComp = (props) => {
                         Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/><br/>     
                         Department: <input className="input" onChange={handleEditInputChange} type='text' required name='department' value={editedWorker.department}/>  <br/> 
                         <div className="goals-text">Goals:</div> <textarea rows='5' cols='35' className="input" onChange={handleEditInputChange} type='text' required name='goals' value={editedWorker.goals}/><br/>     
-                        Edit employee info? <button id='submit-edit-btn' type="submit">YES</button>
+                        Edit employee info? <Button variant="contained" type="submit">YES</Button>
                     </form>
                     </>
                 </Modal.Body>

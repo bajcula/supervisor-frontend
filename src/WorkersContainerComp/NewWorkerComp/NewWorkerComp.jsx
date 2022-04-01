@@ -76,8 +76,8 @@ const NewWorkerComp = (props) => {
                         Image Link: <input className="input" onChange={handleNewInputChange} type='text' name='img' /> <br/>
                         Age: <input className="input" onChange={handleNewInputChange} type='number' required name='age' value={props.newWorker.age}/>   <br/>   
                         Department: <input className="input" onChange={handleNewInputChange} type='text' required  name='department' value={props.newWorker.department}/> <br/>    
-                        <div className="goals-text">Goals:</div> <textarea rows='5' cols='35' className="input" onChange={handleNewInputChange} type='text' required name='goals' value={props.newWorker.goals}/><br/> 
-                        Add this person to your team? <button id='add-new-form-btn' type="submit">YES, PLEASE!</button>
+                        <div className="goals-text">Goals:</div> <textarea rows='5' cols='25' className="input" onChange={handleNewInputChange} type='text' required name='goals' value={props.newWorker.goals}/><br/> 
+                        Add this person to your team? <Button variant="contained" id='add-new-form-btn' type="submit">YES, PLEASE!</Button>
                 </form>
             </Modal.Body>
         </Modal>
