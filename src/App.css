@@ -26,6 +26,7 @@
 }
 .css-advny6-MuiPopper-root {
   z-index: 1;
+  transform: translate3d(0, 0, 200px);
 }
 
 .App-header {
