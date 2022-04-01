@@ -10,7 +10,6 @@ const WorkersContainerComp = (props) => {
     const [workers, setWorkers] = useState([])
     const [searchedShow, setSearchedShow] = useState(false)
     const [searchedWorkers, setSearchedWorkers] = useState([])
-    const [ServerError, setServerError] = useState("")
     const [isValid, setIsValid] = useState({valid: true, message:""})
     const [searchByName, setSearchByName] = useState(true)
     const [hasBeenEdited, setHasBeenEdited] = useState(false)
@@ -64,7 +63,7 @@ const WorkersContainerComp = (props) => {
         if (parsedResponse.success) {
             getWorkers(theCurrentUserId)
         } else {
-            setServerError(parsedResponse.data)
+            props.setServerError(parsedResponse.data)
         }
     }
 
@@ -93,7 +92,7 @@ const WorkersContainerComp = (props) => {
                 const newWorkers = workers.filter(worker=>worker._id!==idToDelete)
                 setWorkers(newWorkers)
             }else{
-                setServerError(parsedResponse.data)
+                props.setServerError(parsedResponse.data)
             }
         }catch(err){
             alert("front end error")
@@ -116,7 +115,7 @@ const WorkersContainerComp = (props) => {
                 setSearchedWorkers(newSearchedWorkers)
             }
         }else {
-            setServerError(parsedResponse.data)
+            props.setServerError(parsedResponse.data)
         }
     }
 
@@ -141,9 +140,8 @@ const WorkersContainerComp = (props) => {
 
     useEffect(()=> {
         fetchData()
-    }, [hasBeenEdited, props.changed])
+    }, [hasBeenEdited])
 
-    //was in the array [hasBeenEdited]
 
     return (
         <div id='main'>
@@ -151,7 +149,7 @@ const WorkersContainerComp = (props) => {
             <NewWorkerComp
             currentUser={props.currentUser}
             key={"1"}
-            ServerError={ServerError}
+            ServerError={props.serverError}
             addNewWorker={addNewWorker}
             newWorker={newWorker}
             isValid={isValid}

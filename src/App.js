@@ -14,7 +14,6 @@ function App() {
   const [userIsValid, setUserIsValid] = useState(true);
   const [quote, setQuote] = useState('The morning is wiser than the evening.');
   const [author, setAuthor]= useState('Serbian proverb');
-  const [changed, setChanged]= useState(false)
   const url = 'https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote?token=ipworld.info';
   const options = {
     method: 'GET',
@@ -167,10 +166,10 @@ const fetchQuote = async () => {
     console.log(parsedResponse)
     if (parsedResponse.success) {
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
+      setServerError("Successfully logged in.")
     } else {
       setServerError(parsedResponse.data)
     }
-    setChanged(!changed)
     setTimeout(()=>{
       setServerError("")
     }, 8000)
@@ -186,7 +185,7 @@ const fetchQuote = async () => {
 
   useEffect(()=>{
     fetchQuote()
-  }, [changed])
+  }, [])
 
   return (
     <Routes>
@@ -195,7 +194,8 @@ const fetchQuote = async () => {
         exact path="/home"
         element ={
           <MainPageComp
-          changed={changed}
+          serverError={serverError}
+          setServerError={setServerError}
           quote={quote}
           author={author}
           >
