@@ -24,7 +24,8 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.css-advny6-MuiPopper-root {
+.css-advny6-MuiPopper-root,
+.css-0 {
   z-index: 10;
 }
 
