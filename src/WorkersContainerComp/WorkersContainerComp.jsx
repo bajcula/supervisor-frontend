@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 import SingleWorkerComp from "./SingleWorkerComp/SingleWorkerComp";
 import NewWorkerComp from "./NewWorkerComp/NewWorkerComp";
 import SearchComp from "../SearchComp/SearchComp";
-
 import SplitButtonSort from "./SplitButtonComp/SplitButtonSort";
+import apiUrl from "../apiConfig";
 
 const WorkersContainerComp = (props) => {
     const [showNewModal, setShowNewModal] = useState(false)
@@ -50,7 +50,7 @@ const WorkersContainerComp = (props) => {
         }
     }
     const addNewWorker = async (newWorker) => {
-        const apiResponse = await fetch ("http://localhost:3001/workers", {
+        const apiResponse = await fetch (`${apiUrl}/workers`, {
             method: "POST",
             body: JSON.stringify(newWorker),
             headers: {
@@ -69,7 +69,7 @@ const WorkersContainerComp = (props) => {
 
     const getWorkers = async (UserId) => {
         try {
-            const workers = await fetch(`http://localhost:3001/workers/${UserId}`)
+            const workers = await fetch(`${apiUrl}/workers/${UserId}`)
             const parsedWorkers = await workers.json()
             setWorkers(parsedWorkers.data)
         }catch(err){
@@ -79,7 +79,7 @@ const WorkersContainerComp = (props) => {
 
     const deleteWorker = async (idToDelete, workerToDelete) => {
         try {
-            const apiResponse = await fetch(`http://localhost:3001/workers/${idToDelete}`, {
+            const apiResponse = await fetch(`${apiUrl}/workers/${idToDelete}`, {
                 method:"DELETE",
                 body: JSON.stringify(workerToDelete),
                 headers: {
@@ -99,7 +99,7 @@ const WorkersContainerComp = (props) => {
         }
     }
     const updateWorker = async (idToUpdate, workerToUpdate) => {
-        const apiResponse = await fetch(`http://localhost:3001/workers/${idToUpdate}`, {
+        const apiResponse = await fetch(`${apiUrl}/workers/${idToUpdate}`, {
             method: "PUT",
             body: JSON.stringify(workerToUpdate),
             headers: {

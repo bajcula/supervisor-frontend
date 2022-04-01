@@ -7,6 +7,7 @@ import LoginComp from './LoginComp/Login';
 import RegisterComp from './RegisterComp/RegisterComp';
 import EditUserComp from './EditUserComp/EditUserComp';
 import DeleteUserComp from './DeleteUserComp/DeleteUserComp';
+import apiUrl from './apiConfig';
 
 function App() {
   const navigate = useNavigate()
@@ -46,7 +47,7 @@ const fetchQuote = async () => {
   // localStorage.setItem("user", "USER OBJECT FROM BACK END")
   // localStorage.getItem("user") TRUE OR FALSE
   const addNewUser = async (newUser) => {
-    const apiResponse = await fetch ("http://localhost:3001/users", {
+    const apiResponse = await fetch (`${apiUrl}/users`, {
         method: "POST",
         body: JSON.stringify(newUser),
         headers: {
@@ -70,7 +71,7 @@ const fetchQuote = async () => {
   }
 
   const updateUser = async(idToUpdate, userToUpdate) => {
-    const apiResponse = await fetch(`http://localhost:3001/users/${idToUpdate}`, {
+    const apiResponse = await fetch(`${apiUrl}/users/${idToUpdate}`, {
         method: "PUT",
         body: JSON.stringify(userToUpdate),
         headers: {
@@ -87,7 +88,7 @@ const fetchQuote = async () => {
   }
   const deleteUser = async (idToDelete, userToDelete) => {
     try {
-      const apiResponse = await fetch(`http://localhost:3001/users/${idToDelete}`, {
+      const apiResponse = await fetch(`${apiUrl}/users/${idToDelete}`, {
         method:"DELETE",
         body: JSON.stringify(userToDelete),
         headers: {
@@ -106,56 +107,10 @@ const fetchQuote = async () => {
     }
   }
 
-//   const deleteWorker = async (idToDelete, workerToDelete) => {
-//     try {
-//         const apiResponse = await fetch(`http://localhost:3001/workers/${idToDelete}`, {
-//             method:"DELETE",
-//             body: JSON.stringify(workerToDelete),
-//             headers: {
-//                 "Content-Type": "application/json"
-//             }
-//         })
-//         const parsedResponse = await apiResponse.json()
-//         console.log(parsedResponse)
-//         if (parsedResponse.success) {
-//             const newWorkers = workers.filter(worker=>worker._id!==idToDelete)
-//             setWorkers(newWorkers)
-//         }else{
-//             setServerError(parsedResponse.data)
-//         }
-//     }catch(err){
-//         alert("front end error")
-//     }
-// }
-
-
-
-//   const updateWorker = async (idToUpdate, workerToUpdate) => {
-//     const apiResponse = await fetch(`http://localhost:3001/workers/${idToUpdate}`, {
-//         method: "PUT",
-//         body: JSON.stringify(workerToUpdate),
-//         headers: {
-//             "Content-Type": "application/json"
-//         }
-//     })
-//     const parsedResponse = await apiResponse.json()
-//     if (parsedResponse.success) {
-//         const newWorkers = workers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
-//         setWorkers(newWorkers)
-//         if(searchedShow) {
-//             const newSearchedWorkers = searchedWorkers.map(worker => worker._id === idToUpdate ? workerToUpdate : worker)
-//             setSearchedWorkers(newSearchedWorkers)
-//         }
-//     }else {
-//         setServerError(parsedResponse.data)
-//     }
-// }
-
-
 
 
   const tryToLogin = async (possibleUser) => {
-    const apiResponse = await fetch ("http://localhost:3001/users/login", {
+    const apiResponse = await fetch (`${apiUrl}/users/login`, {
       method: "POST",
       body: JSON.stringify(possibleUser),
       headers: {
