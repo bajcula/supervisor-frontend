@@ -114,7 +114,6 @@ const fetchQuote = async () => {
 
   const changePassword = async (idToUpdate, oldPass, newPass) => {
     try {
-        
         console.log(idToUpdate)
         const apiResponse = await fetch(`${apiUrl}/users/${idToUpdate}/updatepassword`, {
         method: "PUT",

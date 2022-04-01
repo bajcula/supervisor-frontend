@@ -1,8 +1,12 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
 
 const LoginComp = (props) => {
+    const navigate = useNavigate()
+    if (localStorage.getItem('user')) {
+        navigate('/home')
+    }
     const [possibleUser, setPossibleUser] = useState({
         email: "",
         password: ""
