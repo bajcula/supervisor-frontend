@@ -24,16 +24,16 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.css-advny6-MuiPopper-root,
-.MuiPaper-root,
+.css-advny6-MuiPopper-root {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  position: absolute;
+  z-index: 10;
+}
+/* .MuiPaper-root,
 .MuiList-root,
 .MuiMenuItem-root,
-.MuiTouchRipple-root {
-  -webkit-transform: translate3d(0, 0, 200px);
-  transform: translate3d(0, 0, 200px);
-  position: absolute;
-  z-index: 1000;
-}
+.MuiTouchRipple-root */
 
 .App-header {
   background-color: #282c34;
