@@ -9,7 +9,13 @@ import EditUserComp from './EditUserComp/EditUserComp';
 import DeleteUserComp from './DeleteUserComp/DeleteUserComp';
 import apiUrl from './apiConfig';
 
+
 function App() {
+  const resetStatus = () => {
+    setTimeout(()=>{
+        setServerError("")
+    }, 8000)
+  }
   const navigate = useNavigate()
   const [serverError, setServerError] = useState("");
   const [userIsValid, setUserIsValid] = useState(true);
@@ -55,18 +61,14 @@ const fetchQuote = async () => {
         }
     })
     const parsedResponse = await apiResponse.json()
-    console.log(parsedResponse)
     if (parsedResponse.success) {
         localStorage.setItem("user", JSON.stringify(parsedResponse.data))
         setServerError("You have successfully signed up.")
-        setTimeout(()=>{
-          setServerError("")
-        }, 8000)
+        navigate('/home')
+        resetStatus()
     } else {
         setServerError(parsedResponse.data)
-        setTimeout(()=>{
-          setServerError("")
-        }, 8000)
+        resetStatus()
     }
   }
 
@@ -121,21 +123,13 @@ const fetchQuote = async () => {
     console.log(parsedResponse)
     if (parsedResponse.success) {
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
-      setServerError("Successfully logged in.")
+      setServerError(`Successfully logged in. Welcome!`)
     } else {
       setServerError(parsedResponse.data)
     }
-    setTimeout(()=>{
-      setServerError("")
-    }, 8000)
+    resetStatus()
   }
-  
-  // const reset = () => {
-  //   setTimeout(()=>{
-  //     setServerError("")
-  //   }, 8000)
-  // }
-  // RESET FUNCTION
+ 
 
 
   useEffect(()=>{

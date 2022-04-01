@@ -22,7 +22,7 @@ const LoginComp = (props) => {
         <div id='signin'>
             <p>Please sign in bellow: </p>
                 EMAIL:<br/> <TextField onChange={handleLoginInput} name="email" id="email-login-field"></TextField>
-                PASSWORD:<br/> <TextField onChange={handleLoginInput}  name='password' id='password-login-field'></TextField>
+                PASSWORD:<br/> <TextField onChange={handleLoginInput} type='password'  name='password' id='password-login-field'></TextField>
             <br/><Link to='/home'><Button variant="contained" onClick={logInReq}>SIGN IN</Button> <br/></Link>
         </div>
     )

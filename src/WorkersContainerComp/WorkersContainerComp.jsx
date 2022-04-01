@@ -58,7 +58,6 @@ const WorkersContainerComp = (props) => {
             }
         })
         const parsedResponse = await apiResponse.json()
-        console.log(parsedResponse)
         const theCurrentUserId = await JSON.parse(localStorage.getItem('user'))._id
         if (parsedResponse.success) {
             getWorkers(theCurrentUserId)
