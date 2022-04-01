@@ -38,7 +38,7 @@ const EditUserComp = (props) => {
         <h4 className="page-title">Update your information</h4>
         <img height='100px' width='100px' src={theCurrentUser.img} alt='user-foto'></img>
         <section className="form-container">
-            <form className="new-user-form-container" action="/users" method="POST" encType="multipart/form-data">
+            <form className="edit-user-form-container" action="/users" method="POST" encType="multipart/form-data">
 
                 <div className="form-row-container">
                     <label htmlFor="firstName">First Name:</label>
@@ -62,11 +62,11 @@ const EditUserComp = (props) => {
                 
             </form>
             <div className="form-row-container">
-                    <Link to='/password'><Button variant='outlined'>Change password</Button></Link>
+                    <Link className='link' to='/password'><Button id='change-pass-btn' color='warning' variant='outlined'>Change password</Button></Link>
             </div>
             
         </section>
-        <Link to='/delete'><Button id='delete-btn' color="warning" variant="contained">DELETE PROFILE</Button></Link>
+        <Link className='link' to='/delete'><Button id='delete-btn' color="warning" variant="outlined">DELETE PROFILE</Button></Link>
     </div>
     )
 }

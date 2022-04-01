@@ -163,15 +163,14 @@ button:active {
   margin: 2rem auto;
 }
 
-#edit-btn,
-#delete-btn {
+#edit-btn {
   margin-top: 20px;
-  min-width: 5rem;
+  min-width: 12rem;
   margin: 10px;
   padding: 10px;
   font-size: 14px;
   font-weight: 600;
-  color: blanchedalmond;
+  color: white;
 }
 
 #delete-btn:hover {
@@ -179,14 +178,27 @@ button:active {
   box-shadow: 0 0 20px red;
   -webkit-box-shadow: 0 0 20px red;
   -moz-box-shadow: 0 0 20px red;
+  color: white;
+}
+
+#change-pass-btn,
+#delete-btn {
+  color: red;
+  margin-top: 20px;
+  min-width: 5rem;
+  padding: 10px;
 }
 
 #submit-edit-btn {
-  min-width: 12rem;
+  min-width: 7.5rem;
   padding: 5px;
   font-size: 14px;
   font-weight: 600;
   color: blanchedalmond;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .plusminus {
@@ -289,12 +301,28 @@ button:active {
 
 #delete-page {
   margin: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+#cancel-btn {
+  margin-top: 2rem;
+  min-width: 9rem;
+  min-height: 2.6rem;
+}
+#buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 #edit-container {
   margin: 20px;
 }
 
-#form-container {
+.form-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -325,4 +353,7 @@ button:active {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+.edit-user-form-container {
+  max-width: 700px;
 }

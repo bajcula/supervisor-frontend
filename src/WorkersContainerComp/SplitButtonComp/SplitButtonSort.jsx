@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 library.add(faCaretDown)
-
 const options = ['last name', 'salary', 'age'];
 
 function SplitButtonSort(props) {
@@ -21,29 +20,25 @@ function SplitButtonSort(props) {
     const handleClick = () => {
       console.info(`You clicked ${options[selectedIndex]}`);
     };
-  
     const handleMenuItemClick = (event, index) => {
       setSelectedIndex(index);
       if(index === 1 || index === 2) {
-        console.log('sort by', options[index])
         props.sortWorkers(options[index])
       } else {
         props.sortWorkers("lastName")
       }
       setOpen(false);
     };
-  
     const handleToggle = () => {
       setOpen((prevOpen) => !prevOpen);
     };
-  
     const handleClose = (event) => {
       if (anchorRef.current && anchorRef.current.contains(event.target)) {
         return;
       }
       setOpen(false);
     };
-  
+
     return (
       <React.Fragment>
         <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
