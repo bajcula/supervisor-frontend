@@ -25,9 +25,12 @@
   }
 }
 .css-advny6-MuiPopper-root,
-.MuiList-root {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+.MuiPaper-root,
+.MuiList-root,
+.MuiMenuItem-root,
+.MuiTouchRipple-root {
+  -webkit-transform: translate3d(0, 0, 200px);
+  transform: translate3d(0, 0, 200px);
   position: absolute;
   z-index: 1000;
 }
