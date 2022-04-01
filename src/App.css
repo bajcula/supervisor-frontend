@@ -24,16 +24,16 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.css-advny6-MuiPopper-root {
+.css-advny6-MuiPopper-root,
+.MuiPaper-root,
+.MuiList-root,
+.MuiMenuItem-root,
+.MuiTouchRipple-root {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   position: absolute;
   z-index: 10;
 }
-/* .MuiPaper-root,
-.MuiList-root,
-.MuiMenuItem-root,
-.MuiTouchRipple-root */
 
 .App-header {
   background-color: #282c34;
@@ -100,6 +100,7 @@ button:active {
   display: grid;
   grid-template-columns: 1fr;
   padding: 10px;
+  perspective: 1000px;
 }
 
 #edit-title {
