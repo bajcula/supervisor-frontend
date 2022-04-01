@@ -29,8 +29,6 @@
 .MuiList-root,
 .MuiMenuItem-root,
 .MuiTouchRipple-root {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
   position: absolute;
   z-index: 10;
 }
@@ -100,6 +98,8 @@ button:active {
   display: grid;
   grid-template-columns: 1fr;
   padding: 10px;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   perspective: 1000px;
 }
 
