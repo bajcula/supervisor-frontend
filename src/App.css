@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Trocchi&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 #main-page,
 .App {
   text-align: center;
-  font-family: "Trocchi", serif;
-  background-color: blanchedalmond;
+  font-family: "Poppins", sans-serif;
+  background-color: #deebdd;
+  background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 50%);
   color: black;
   display: flex;
   flex-direction: column;
@@ -24,6 +25,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+.MuiButton-contained {
+  background-color: red;
+}
+
 .css-advny6-MuiPopper-root,
 .css-0 {
   z-index: 10;
@@ -74,14 +80,15 @@ button:active {
 }
 
 .single-worker {
-  border: 5px double rgb(96, 14, 113);
-  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  border: 5px double rgb(21, 53, 89);
+  background-color: #bfbdbd;
   text-align: center;
   margin: 10px;
   position: relative;
   padding: 5px;
   line-height: 80%;
-  font-family: "Trocchi", serif;
+  font-family: "Poppins", sans-serif;
+  color: black;
 }
 
 .single-workers-div p {
@@ -97,7 +104,7 @@ button:active {
 }
 
 #edit-title {
-  font-family: "Trocchi", serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.7rem;
   display: flex;
   flex-direction: row-reverse;
@@ -136,20 +143,20 @@ button:active {
       #989898;
   background-blend-mode: multiply, multiply;
   color: blanchedalmond;
-  font-family: "Trocchi", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .modal-body {
-  font-family: "Trocchi", serif;
-  background-color: blanchedalmond;
+  font-family: "Poppins", sans-serif;
+  background-color: #bbdbbe;
   text-align: center;
   font-size: 1rem;
 }
 
 #example-modal-sizes-title-lg {
-  font-family: "Trocchi", serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.7rem;
-  color: blanchedalmond;
+  color: #bbdbbe;
   text-align: center;
   width: 100%;
   display: flex;
@@ -165,7 +172,8 @@ button:active {
 
 #edit-btn {
   margin-top: 20px;
-  min-width: 12rem;
+  min-height: 2.8rem;
+  min-width: 6rem;
   margin: 10px;
   padding: 10px;
   font-size: 14px;
@@ -183,14 +191,31 @@ button:active {
 
 #change-pass-btn,
 #delete-btn {
-  color: red;
   margin-top: 20px;
-  min-width: 5rem;
+  min-width: 11rem;
   padding: 10px;
 }
 
+#change-pass-btn {
+  color: white;
+  background-color: rgb(191, 191, 191);
+}
+
+#delete-btn-view {
+  min-width: 11rem;
+  min-height: 2.8rem;
+}
+
+#delete-btn-view:hover {
+  background-color: red;
+  box-shadow: 0 0 20px red;
+  -webkit-box-shadow: 0 0 20px red;
+  -moz-box-shadow: 0 0 20px red;
+  color: white;
+}
+
 #submit-edit-btn {
-  min-width: 7.5rem;
+  min-width: 6rem;
   padding: 5px;
   font-size: 14px;
   font-weight: 600;
@@ -209,9 +234,10 @@ button:active {
   height: 25px;
   border-radius: 5px;
   padding: 0;
+  background-color: rgba(23, 138, 200, 1);
 }
 .plusminus:disabled {
-  opacity: 30%;
+  opacity: 50%;
 }
 
 #bonus {
@@ -336,12 +362,6 @@ button:active {
   align-items: center;
   margin: 5px;
 }
-.view-modal {
-  max-width: 85%;
-}
-.edit-modal {
-  min-width: 90%;
-}
 
 #new-form-modal {
   display: flex;
@@ -356,4 +376,7 @@ button:active {
 }
 .edit-user-form-container {
   max-width: 700px;
+}
+#search-bar {
+  background-color: #bfbdbd;
 }

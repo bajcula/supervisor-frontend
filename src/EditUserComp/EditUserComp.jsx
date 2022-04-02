@@ -66,7 +66,7 @@ const EditUserComp = (props) => {
             </div>
             
         </section>
-        <Link className='link' to='/delete'><Button id='delete-btn' color="warning" variant="outlined">DELETE PROFILE</Button></Link>
+        <Link className='link' to='/delete'><Button id='delete-btn-view' color="warning" variant="contained">DELETE PROFILE</Button></Link>
     </div>
     )
 }

@@ -24,15 +24,15 @@ const NavbarComp = (props) => {
             <>
             {/* <h5>Welcome {theCurrentUserObj.firstName}!</h5> */}
             <section id='nav-buttons'>
-                <Link to='/home'><Button  variant="contained">HOME</Button></Link>
-                <Link to='/home'><Button  variant="contained" onClick={logOut}>SIGN OUT</Button></Link>
+                <Link to='/home'><Button className="button" variant="contained">HOME</Button></Link>
+                <Link to='/home'><Button className="button" variant="contained" onClick={logOut}>SIGN OUT</Button></Link>
             </section>
             <Link to='/edit'><Button  variant="contained">EDIT PROFILE</Button></Link>
             </>
             :   
             <section id="nav-buttons-unlog">
-            <Link to='/signup'><Button variant="contained">SIGN UP</Button></Link>
-            <Link to='/signin'><Button  variant="contained">SIGN IN</Button></Link>
+            <Link to='/signup'><Button className="button" variant="contained">SIGN UP</Button></Link>
+            <Link to='/signin'><Button className="button" variant="contained">SIGN IN</Button></Link>
             </section>
             }
             <p id="err-msg">{props.serverError}</p>

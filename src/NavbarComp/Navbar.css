@@ -1,14 +1,13 @@
 #title {
   font-size: 2.6rem;
   padding-top: 1rem;
-  text-shadow: 3px 3px rgb(140, 140, 140);
+  color: rgb(241, 255, 185);
 }
-
 #subtitle {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 800;
   padding-bottom: 20px;
-  text-shadow: 2px 2px rgb(140, 140, 140);
+  color: blanchedalmond;
 }
 button {
   border-radius: 5px;
@@ -24,18 +23,12 @@ button:active {
 }
 
 #navbar {
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(0, 0, 0, 0.15) 50%
-    ),
-    radial-gradient(
-        at top center,
-        rgba(255, 255, 255, 0.4) 0%,
-        rgba(0, 0, 0, 0.8) 120%
-      )
-      #989898;
-  background-blend-mode: multiply, multiply;
+  background: rgb(56, 85, 108);
+  background: radial-gradient(
+    circle,
+    rgba(56, 85, 108, 1) 45%,
+    rgba(26, 69, 108, 1) 70%
+  );
   padding-bottom: 10px;
 }
 #nav-buttons,

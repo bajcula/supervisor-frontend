@@ -151,14 +151,14 @@ const SingleWorkerComp = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <><i>Department:</i> {editedWorker.department}</> <br/>
-                    <><i>Email:</i> {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </><br/>
-                    <><i>Salary($)</i>: {editedWorker.salary}</><br/>
-                    <><i>Age:</i> {editedWorker.age}</><br/>
-                    <><i>Goals:</i> {editedWorker.goals}</><br/><br/>
+                    <><b>Department:</b> {editedWorker.department}</> <br/>
+                    <><b>Email:</b> {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </><br/>
+                    <><b>Salary($)</b>: {editedWorker.salary}</><br/>
+                    <><b>Age:</b> {editedWorker.age}</><br/>
+                    <><b>Goals:</b> {editedWorker.goals}</><br/><br/>
                     <div id='bonus'>
                         <section id='raise-control'>
-                            <i>Raise Track:</i>
+                            <b>Raise Track:</b>
                             <button
                             disabled={editedWorker.bonusTracker === -2}
                             className="plusminus"
@@ -201,7 +201,7 @@ const SingleWorkerComp = (props) => {
 
                     <br/>
                     <Button id='edit-btn' variant="contained" onClick={openEditModal}>EDIT</Button>
-                    <Button id='delete-btn' color="warning" variant="contained" onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</Button>
+                    <Button id='delete-btn-view' color="warning" variant="contained" onClick={()=>props.deleteWorker(props.worker._id)}>DELETE</Button>
  
                 
                 </Modal.Body>
