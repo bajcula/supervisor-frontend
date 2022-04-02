@@ -37,7 +37,7 @@ const EditUserComp = (props) => {
         <div id='edit-container'>
             
         <h4 className="page-title">Update your information</h4>
-        <img height='100px' width='100px' src={theCurrentUser.img} alt='user-foto'></img>
+        <img height='135px' width='135px' src={theCurrentUser.img} alt='user-foto'></img>
         <section className="form-container">
             <form className="edit-user-form-container" action="/users" method="POST" encType="multipart/form-data">
 
@@ -62,12 +62,12 @@ const EditUserComp = (props) => {
                 <Button id='submit-edit-btn' variant="contained" onClick={submissionEditedUser} type="submit">Submit</Button>
                 
             </form>
-            <div className="form-row-container">
+            <div className="buttons-div-edit-user-page">
                     <Link className='link' to='/password'><Button id='change-pass-btn' color='warning' variant='outlined'>Change password</Button></Link>
+                    <Link className='link' to='/delete'><Button id='delete-btn-view-edit' color="warning" variant="contained">DELETE PROFILE</Button></Link>
             </div>
             
         </section>
-        <Link className='link' to='/delete'><Button id='delete-btn-view-edit' color="warning" variant="contained">DELETE PROFILE</Button></Link>
     </div>
     )
 }

@@ -16,3 +16,11 @@
   justify-content: center;
   flex-direction: column;
 }
+#delete-btn-delete {
+  min-width: 10rem;
+  padding: 10px;
+  font-size: 12px;
+  margin-top: 2rem;
+  min-width: 10rem;
+  min-height: 2.6rem;
+}

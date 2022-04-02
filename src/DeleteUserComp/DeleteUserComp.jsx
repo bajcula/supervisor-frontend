@@ -10,7 +10,7 @@ const DeleteUserComp = (props) => {
             <h5>Are you sure you want to delete your profile? All of your workers data will be deleted too!?</h5>
             <div id='buttons-container'>
                 <Link className='link' to='/home'><Button id='cancel-btn' variant='outlined'>CANCEL</Button></Link>
-                <Button color='warning' id='delete-btn' variant="contained" onClick={()=>props.deleteUser(theCurrentUser._id, theCurrentUser)} type="submit">DELETE PROFILE</Button>
+                <Button color='warning' id='delete-btn-delete' variant="contained" onClick={()=>props.deleteUser(theCurrentUser._id, theCurrentUser)} type="submit">DELETE PROFILE</Button>
             </div>
         </div>
     )
