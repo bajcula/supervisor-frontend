@@ -59,6 +59,7 @@ const SingleWorkerComp = (props) => {
     }
     const openEditModal = () => {
         setEditModalShow(true)
+        setLgShow(false)
     }
     const handleEditInputChange = (e) => {
         setEditedWorker({
@@ -145,16 +146,16 @@ const SingleWorkerComp = (props) => {
                 <Modal.Header 
                 closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        <p><b>{editedWorker.firstName}<br/> {editedWorker.lastName}</b></p>
-                        <img height='100px' width='100px' src={editedWorker.img} alt='profile-thumbnail'></img>
+                        <p><b>{props.worker.firstName}<br/> {props.worker.lastName}</b></p>
+                        <img height='100px' width='100px' src={props.worker.img} alt='profile-thumbnail'></img>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <><b>Department:</b> {editedWorker.department}</> <br/>
-                    <><b>Email:</b> {editedWorker.email} <a href={`mailto:${editedWorker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </><br/>
-                    <><b>Salary($)</b>: {editedWorker.salary}</><br/>
-                    <><b>Age:</b> {editedWorker.age}</><br/>
-                    <><b>Goals:</b> {editedWorker.goals}</><br/><br/>
+                    <><b>Department:</b> {props.worker.department}</> <br/>
+                    <><b>Email:</b> {props.worker.email} <a href={`mailto:${props.worker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </><br/>
+                    <><b>Salary($)</b>: {props.worker.salary}</><br/>
+                    <><b>Age:</b> {props.worker.age}</><br/>
+                    <><b>Goals:</b> {props.worker.goals}</><br/><br/>
                     <div id='bonus'>
                         <section id='raise-control'>
                             <b>Raise Track:</b>
@@ -211,6 +212,7 @@ const SingleWorkerComp = (props) => {
             show={editModalShow}
             onHide={() => {
                 setEditModalShow(false)
+                setLgShow(true)
                 props.setIsValid({
                     valid:true,
                     message:""
