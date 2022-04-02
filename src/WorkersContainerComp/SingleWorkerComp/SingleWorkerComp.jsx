@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from 'react-bootstrap/Modal'
-import { Button } from "@mui/material";
+import { Button, TextareaAutosize } from "@mui/material";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -55,8 +55,6 @@ const SingleWorkerComp = (props) => {
             const newSearchedWorkers = props.searchedWorkers.map(thisworker=>thisworker._id===props.worker._id? localEdited:thisworker)
             props.setSearchedWorkers(newSearchedWorkers)
         }
-
-        
     }
     const openEditModal = () => {
         setEditModalShow(true)
@@ -146,7 +144,7 @@ const SingleWorkerComp = (props) => {
                 <Modal.Header 
                 closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        <p>{editedWorker.firstName}<br/> {editedWorker.lastName}</p>
+                        <p><b>{editedWorker.firstName}<br/> {editedWorker.lastName}</b></p>
                         <img height='100px' width='100px' src={editedWorker.img} alt='profile-thumbnail'></img>
                     </Modal.Title>
                 </Modal.Header>
@@ -210,7 +208,13 @@ const SingleWorkerComp = (props) => {
             dialogClassName="edit-modal"
             size="lg"
             show={editModalShow}
-            onHide={() => setEditModalShow(false)}
+            onHide={() => {
+                setEditModalShow(false)
+                props.setIsValid({
+                    valid:true,
+                    message:""
+                })
+            }}
             aria-labelledby="example-modal-sizes-title-lg"
             centered
             >
@@ -227,16 +231,33 @@ const SingleWorkerComp = (props) => {
                     <>
                     <form id='edit-form-modal' onSubmit={submissionEdit}>
                         { props.isValid.valid ? null : <p className="err-msg">{props.isValid.message}</p> }
-                        
-                        First Name: <input className="input" onChange={handleEditInputChange} type='text' required name='firstName' value={editedWorker.firstName}/> <br/>
-                        Last Name: <input className="input" onChange={handleEditInputChange} type='text' required name='lastName' value={editedWorker.lastName}/> <br/>    
-                        Email: <input className="input" onChange={handleEditInputChange} type='text' required name='email' value={editedWorker.email}/> <br/>
-                        Salary($): <input className="input" onChange={handleEditInputChange} type='number' required name='salary' value={editedWorker.salary}/> <br/>
-                        Image Link: <input className="input" onChange={handleEditInputChange} type='text' name='img'/><br/>
-                        Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/><br/>     
-                        Department: <input className="input" onChange={handleEditInputChange} type='text' required name='department' value={editedWorker.department}/>  <br/> 
-                        <div>Goals:</div> <textarea className="input" onChange={handleEditInputChange} type='text' required name='goals' value={editedWorker.goals}/><br/>     
-                        Edit employee info? <Button variant="contained" type="submit">YES</Button>
+                        <div className="edit-form-row">
+                        First Name: <input className="input" onChange={handleEditInputChange} type='text' required name='firstName' value={editedWorker.firstName}/>
+                        </div>
+                        <div className="edit-form-row">
+                        Last Name: <input className="input" onChange={handleEditInputChange} type='text' required name='lastName' value={editedWorker.lastName}/>  
+                        </div>
+                        <div className="edit-form-row">
+                        Email: <input className="input" onChange={handleEditInputChange} type='text' required name='email' value={editedWorker.email}/>
+                        </div>
+                        <div className="edit-form-row">
+                        Salary($): <input className="input" onChange={handleEditInputChange} type='number' required name='salary' value={editedWorker.salary}/>
+                        </div>
+                        <div className="edit-form-row">
+                        Image Link: <input className="input" onChange={handleEditInputChange} type='text' name='img'/>
+                        </div>
+                        <div className="edit-form-row">
+                        Age: <input className="input" onChange={handleEditInputChange} type='number' required name='age' value={editedWorker.age}/>    
+                        </div>
+                        <div className="edit-form-row">
+                        Department: <input className="input" onChange={handleEditInputChange} type='text' required name='department' value={editedWorker.department}/> 
+                        </div>
+                        <div className="edit-form-row">
+                        Goals:
+                        <TextareaAutosize minRows={3} onChange={handleEditInputChange} className="text-area" required name='goals' value={editedWorker.goals}></TextareaAutosize>
+                        </div>
+                        <br/>     
+                        Edit employee info? <Button id='submit-edit-btn' variant="contained" type="submit">YES</Button>
                     </form>
                     </>
                 </Modal.Body>

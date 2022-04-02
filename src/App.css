@@ -64,12 +64,6 @@ button {
   background-color: rgb(23, 95, 200);
 }
 
-/* box-shadow: 3px 3px black;
-background-color: rgb(23, 95, 200);
-color: blanchedalmond;
-margin: 20px;
-padding: 10px; */
-
 button:active {
   transform: translateX(3px) translateY(3px);
   box-shadow: none;
@@ -108,7 +102,7 @@ button:active {
   font-size: 1.7rem;
   display: flex;
   flex-direction: row-reverse;
-  color: blanchedalmond;
+  color: #bbdbbe;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -123,9 +117,12 @@ button:active {
   margin-right: 20px;
 }
 
+.text-area,
 .input {
+  font-size: 14px;
   padding: 3px;
   margin: 3px;
+  width: 60%;
   float: inline-end;
 }
 
@@ -177,7 +174,6 @@ button:active {
   margin: 10px;
   padding: 10px;
   font-size: 14px;
-  font-weight: 600;
   color: white;
 }
 
@@ -192,7 +188,7 @@ button:active {
 #change-pass-btn,
 #delete-btn {
   margin-top: 20px;
-  min-width: 11rem;
+  min-width: 6rem;
   padding: 10px;
 }
 
@@ -202,7 +198,7 @@ button:active {
 }
 
 #delete-btn-view {
-  min-width: 11rem;
+  min-width: 6rem;
   min-height: 2.8rem;
 }
 
@@ -215,7 +211,9 @@ button:active {
 }
 
 #submit-edit-btn {
+  margin: 0 auto;
   min-width: 6rem;
+  max-width: 6rem;
   padding: 5px;
   font-size: 14px;
   font-weight: 600;
@@ -363,17 +361,27 @@ button:active {
   margin: 5px;
 }
 
-#new-form-modal {
+#new-form-modal,
+#edit-form-modal {
   display: flex;
   flex-direction: column;
 }
 
-.new-form-row {
+#new-form-modal p,
+#edit-form-modal p {
+  margin: 0 10px 20px 10px;
+  text-decoration: underline;
+  text-decoration-color: rgba(23, 138, 200, 0.7);
+}
+
+.new-form-row,
+.edit-form-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+
 .edit-user-form-container {
   max-width: 700px;
 }

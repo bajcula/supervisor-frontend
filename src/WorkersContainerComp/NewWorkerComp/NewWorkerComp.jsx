@@ -56,7 +56,13 @@ const NewWorkerComp = (props) => {
         <Modal  
         size="lg"
         show={props.showNewModal}
-        onHide={() => props.setShowNewModal(false)}
+        onHide={() => {
+            props.setShowNewModal(false)
+            props.setIsValid({
+                valid:true,
+                message:""
+            })
+        }}
         aria-labelledby="example-modal-sizes-title-lg"
         centered
         >
@@ -68,7 +74,6 @@ const NewWorkerComp = (props) => {
             <Modal.Body>
                 <form id='new-form-modal' onSubmit={submissionNew}>
                     { props.isValid.valid ? null : <p className="err-msg">{props.isValid.message}</p> }
-                    { props.serverError ? <p className="err-msg">{props.serverError}</p> : null }
                     <div className="new-form-row">
                         First name: <input className="input" onChange={handleNewInputChange} type='text' required name='firstName' value={props.newWorker.firstName}/>
                     </div>
