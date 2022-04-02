@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
+import './Login.css'
 
 const LoginComp = (props) => {
     const navigate = useNavigate()
@@ -25,8 +26,8 @@ const LoginComp = (props) => {
     return (
         <div id='signin'>
             <p>Please sign in bellow: </p>
-                EMAIL:<br/> <TextField onChange={handleLoginInput} name="email" id="email-login-field"></TextField>
-                PASSWORD:<br/> <TextField onChange={handleLoginInput} type='password'  name='password' id='password-login-field'></TextField>
+                EMAIL <TextField onChange={handleLoginInput} name="email" id="email-login-field"></TextField>
+                PASSWORD <TextField onChange={handleLoginInput} type='password'  name='password' id='password-login-field'></TextField>
             <br/><Button variant="contained" onClick={logInReq}>SIGN IN</Button>
         </div>
     )

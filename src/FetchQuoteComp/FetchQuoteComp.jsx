@@ -5,7 +5,7 @@ const FetchQuoteComp = (props) => {
 
     return(
         <div id='quote-div'>
-          <h5>Quote of the day:</h5>
+          <h6>Quote of the day:</h6>
           <p>{props.quote}</p>
           {props.author === ""?
           <i>Unknown Author</i>

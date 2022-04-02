@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom'
+import './EditUser.css'
 
 const EditUserComp = (props) => {
     const theCurrentUser = JSON.parse(localStorage.getItem('user'))

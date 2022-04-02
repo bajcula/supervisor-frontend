@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkersContainerComp from '../WorkersContainerComp/WorkersContainerComp';
 import FetchQuoteComp from '../FetchQuoteComp/FetchQuoteComp';
+import './MainPage.css'
 
 const MainPageComp = (props) => {
     

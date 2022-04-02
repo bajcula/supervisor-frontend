@@ -1,0 +1,18 @@
+#delete-page {
+  margin: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#cancel-btn {
+  margin-top: 2rem;
+  min-width: 10rem;
+  min-height: 2.6rem;
+}
+#buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

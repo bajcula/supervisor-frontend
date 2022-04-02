@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import './DeleteUser.css'
 
 const DeleteUserComp = (props) => {
     const theCurrentUser = JSON.parse(localStorage.getItem('user'))
