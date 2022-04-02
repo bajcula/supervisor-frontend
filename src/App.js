@@ -10,7 +10,6 @@ import DeleteUserComp from './DeleteUserComp/DeleteUserComp';
 import PasswordChangeComp from './PasswordChangeComp/PasswordChangeComp';
 import apiUrl from './apiConfig';
 
-
 function App() {
   const resetStatus = () => {
     setTimeout(()=>{
@@ -81,6 +80,7 @@ const fetchQuote = async () => {
             "Content-Type": "application/json"
         }
     })
+    console.log(idToUpdate)
     const parsedResponse = await apiResponse.json()
     if (parsedResponse.success) {
       localStorage.setItem('user', JSON.stringify(parsedResponse.data))
@@ -106,6 +106,7 @@ const fetchQuote = async () => {
         navigate('/home')
       } else {
         setServerError(parsedResponse.data)
+        resetStatus()
       }
     } catch (err) {
       setServerError("Front End Error, deletion unsuccessfull.")
