@@ -4,10 +4,11 @@
   color: rgb(241, 255, 185);
 }
 #subtitle {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: 800;
   padding-bottom: 20px;
   color: blanchedalmond;
+  margin: 0 30px;
 }
 button {
   border-radius: 5px;
@@ -67,4 +68,36 @@ button:active {
   color: blanchedalmond;
   animation: hideAnimation 4s ease-in-out 10s;
   animation-fill-mode: both;
+}
+
+@media only screen and (max-width: 468px) {
+  #nav-buttons button {
+    font-size: 10px;
+    min-width: 80px;
+  }
+}
+@media only screen and (min-width: 468px) {
+  #title {
+    font-size: 4rem;
+  }
+  #subtitle {
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #title {
+    font-size: 6rem;
+  }
+  #subtitle {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #title {
+    font-size: 7rem;
+    letter-spacing: 0.8rem;
+  }
+  #subtitle {
+    font-size: 2rem;
+  }
 }

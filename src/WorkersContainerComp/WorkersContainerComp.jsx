@@ -178,6 +178,7 @@ const WorkersContainerComp = (props) => {
                 setHasBeenEdited={setHasBeenEdited}
                 >    
                 </SplitButtonSort>
+                    <div id='the-container'>
                     {searchedShow ?
                     <>
                     {searchedWorkers.map((worker)=>{
@@ -214,6 +215,7 @@ const WorkersContainerComp = (props) => {
                     })}
                     </>
                     }
+                </div>    
             </div>
         </div>
     )

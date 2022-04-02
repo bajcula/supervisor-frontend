@@ -85,18 +85,6 @@ button:active {
   color: black;
 }
 
-.single-workers-div p {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  width: 90%;
-}
-
-.single-workers-div {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 10px;
-}
-
 #edit-title {
   font-family: "Poppins", sans-serif;
   font-size: 1.7rem;
@@ -124,6 +112,7 @@ button:active {
   margin: 3px;
   width: 60%;
   float: inline-end;
+  background-color: #bfbdbd;
 }
 
 .modal-header {
@@ -188,8 +177,9 @@ button:active {
 #change-pass-btn,
 #delete-btn {
   margin-top: 20px;
-  min-width: 6rem;
+  min-width: 10rem;
   padding: 10px;
+  font-size: 12px;
 }
 
 #change-pass-btn {
@@ -199,6 +189,11 @@ button:active {
 
 #delete-btn-view {
   min-width: 6rem;
+  min-height: 2.8rem;
+}
+#delete-btn-view-edit {
+  font-size: 12px;
+  min-width: 10rem;
   min-height: 2.8rem;
 }
 
@@ -212,8 +207,8 @@ button:active {
 
 #submit-edit-btn {
   margin: 0 auto;
-  min-width: 6rem;
-  max-width: 6rem;
+  min-width: 10rem;
+  max-width: 10rem;
   padding: 5px;
   font-size: 14px;
   font-weight: 600;
@@ -332,7 +327,7 @@ button:active {
 }
 #cancel-btn {
   margin-top: 2rem;
-  min-width: 9rem;
+  min-width: 10rem;
   min-height: 2.6rem;
 }
 #buttons-container {
@@ -344,6 +339,11 @@ button:active {
 
 #edit-container {
   margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .form-container {
@@ -351,6 +351,7 @@ button:active {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .form-row-container {
@@ -383,8 +384,40 @@ button:active {
 }
 
 .edit-user-form-container {
+  width: 100%;
   max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 #search-bar {
   background-color: #bfbdbd;
+}
+
+@media only screen and (min-width: 600px) {
+  #the-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .single-worker {
+    min-width: 280;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #the-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #the-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media only screen and (min-width: 1620px) {
+  #the-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }

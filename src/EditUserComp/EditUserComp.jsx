@@ -42,21 +42,21 @@ const EditUserComp = (props) => {
 
                 <div className="form-row-container">
                     <label htmlFor="firstName">First Name:</label>
-                    <input onChange={handleEditUserInputChange} type="text" name="firstName" required value={editedUser.firstName}/>
+                    <input className='input' onChange={handleEditUserInputChange} type="text" name="firstName" required value={editedUser.firstName}/>
                 </div>
 
                 <div className="form-row-container">
                     <label htmlFor="lastName">Last Name:</label>
-                    <input onChange={handleEditUserInputChange}  type="text" name="lastName" required value={editedUser.lastName}/>
+                    <input className='input' onChange={handleEditUserInputChange}  type="text" name="lastName" required value={editedUser.lastName}/>
                 </div>
 
                 <div className="form-row-container">
                     <label htmlFor="email">Email:</label>
-                    <input onChange={handleEditUserInputChange}  type="text" name="email" required value={editedUser.email}/>
+                    <input className='input' onChange={handleEditUserInputChange}  type="text" name="email" required value={editedUser.email}/>
                 </div>
                 <div className="form-row-container">
                     <label htmlFor="img">Image link:</label>
-                    <input onChange={handleEditUserInputChange}  type="text" name="img"/>
+                    <input className='input' onChange={handleEditUserInputChange}  type="text" name="img"/>
                 </div>
                 <Button id='submit-edit-btn' variant="contained" onClick={submissionEditedUser} type="submit">Submit</Button>
                 
@@ -66,7 +66,7 @@ const EditUserComp = (props) => {
             </div>
             
         </section>
-        <Link className='link' to='/delete'><Button id='delete-btn-view' color="warning" variant="contained">DELETE PROFILE</Button></Link>
+        <Link className='link' to='/delete'><Button id='delete-btn-view-edit' color="warning" variant="contained">DELETE PROFILE</Button></Link>
     </div>
     )
 }

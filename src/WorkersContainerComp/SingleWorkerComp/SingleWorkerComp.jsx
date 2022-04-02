@@ -125,10 +125,10 @@ const SingleWorkerComp = (props) => {
 
     return (
         <section className="single-worker">
-            <h2><b>{props.worker.firstName} {props.worker.lastName} ({props.worker.age})</b></h2>
+            <h4><b>{props.worker.firstName} {props.worker.lastName} ({props.worker.age})</b></h4>
             <img height='100px' width='100px' src={props.worker.img} alt='profile-thumbnail'></img>
-            <p><br/><i>Department:</i> {props.worker.department}</p>
-            <p><i>Salary($):</i> {props.worker.salary}</p>
+            <p><br/><b>Department:</b> {props.worker.department}</p>
+            <p><b>Salary($):</b> {props.worker.salary}</p>
             <Button id='view-btn' onClick={()=>setLgShow(true)} variant="contained">
                 VIEW
             </Button>

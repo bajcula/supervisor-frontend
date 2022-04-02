@@ -8,3 +8,25 @@
   font-size: 1rem;
   margin: 0 auto;
 }
+@media only screen and (min-width: 768px) {
+  #quote-div p {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #quote-div p {
+    font-size: 1.4rem;
+  }
+  #quote-div {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #quote-div p {
+    font-size: 1.6rem;
+  }
+  #quote-div {
+    font-size: 1.3rem;
+  }
+}

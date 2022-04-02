@@ -19,15 +19,15 @@ const NavbarComp = (props) => {
     return (
         <div id='navbar'>
             <h1 id='title'><b>SUPERVISOR</b></h1>
-            <h2 id='subtitle'>A place for keeping track<br/> of your employees.</h2>
+            <h2 id='subtitle'>A place for keeping track of your employees.</h2>
             {localStorage.getItem("user")?
             <>
             {/* <h5>Welcome {theCurrentUserObj.firstName}!</h5> */}
             <section id='nav-buttons'>
                 <Link to='/home'><Button className="button" variant="contained">HOME</Button></Link>
+                <Link to='/edit'><Button  variant="contained">EDIT PROFILE</Button></Link>
                 <Link to='/home'><Button className="button" variant="contained" onClick={logOut}>SIGN OUT</Button></Link>
             </section>
-            <Link to='/edit'><Button  variant="contained">EDIT PROFILE</Button></Link>
             </>
             :   
             <section id="nav-buttons-unlog">
