@@ -20,7 +20,7 @@ function App() {
   const [serverError, setServerError] = useState("");
   const [userIsValid, setUserIsValid] = useState(true);
   const [quote, setQuote] = useState('');
-  const [author, setAuthor]= useState('');
+  const [author, setAuthor]= useState(' ');
   const url = 'https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote?token=ipworld.info';
   const options = {
     method: 'GET',
