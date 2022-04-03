@@ -10,7 +10,9 @@ SUPERVISOR is an app for keeping track of your employees. You can add, edit and 
 
 ##### Feel free to register and use the app, or to use profile bellow.
 
-##### email: stevieG@mail.com || password: 123
+| EMAIL              | PASSWORD |
+| ------------------ | :------: |
+| `stevieG@mail.com` |  `123`   |
 
 ### Tech Stack:
 
