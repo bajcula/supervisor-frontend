@@ -25,7 +25,7 @@ SUPERVISOR is an app for keeping track of your employees. You can add, edit and 
 
 ### Restful Routes:
 
-![routes](https://imgur.com/wH7GFw8 "restful routes")
+![routes](https://i.imgur.com/wH7GFw8.png?1 "restful routes")
 
 ### Aproach:
 
