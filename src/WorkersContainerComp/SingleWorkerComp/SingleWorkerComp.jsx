@@ -130,7 +130,7 @@ const SingleWorkerComp = (props) => {
             <h5><b>{props.worker.firstName} {props.worker.lastName} ({props.worker.age})</b></h5>
             <img height='100px' width='100px' src={props.worker.img} alt='profile-thumbnail'></img>
             <div><br/><b>Department:</b> <div className="dept">{props.worker.department}</div></div>
-            <p><b>Salary:</b> {(props.worker.salary).toLocaleString("en-US", {style:"currency", currency:"USD"})}</p>
+            <p><b>Salary:</b> {(props.worker.salary).toLocaleString("en-US", {maximumFractionDigits:"0", style:"currency", currency:"USD"})}</p>
             <Button id='view-btn' onClick={()=>setLgShow(true)} variant="contained">
                 VIEW
             </Button>
@@ -153,7 +153,7 @@ const SingleWorkerComp = (props) => {
                 <Modal.Body>
                     <><b>Department:</b> {props.worker.department}</> <br/>
                     <><b>Email:</b> {props.worker.email} <a href={`mailto:${props.worker.email}`}> <FontAwesomeIcon id='envelope' icon="fa-solid fa-envelope" /></a> </><br/>
-                    <><b>Salary:</b> {(props.worker.salary).toLocaleString("en-US", {style:"currency", currency:"USD"})}</><br/>
+                    <><b>Salary:</b> {(props.worker.salary).toLocaleString("en-US", {maximumFractionDigits:"0", style:"currency", currency:"USD"})}</><br/>
                     <><b>Age:</b> {props.worker.age}</><br/>
                     <><b>Goals:</b> {props.worker.goals}</><br/><br/>
                     <div id='bonus'>
