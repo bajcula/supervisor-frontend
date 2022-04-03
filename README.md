@@ -8,6 +8,10 @@ SUPERVISOR is an app for keeping track of your employees. You can add, edit and 
 
 #### [Supervisor App](https://supervisor-app.herokuapp.com/home)
 
+##### Feel free to register and use the app, or to use profile bellow.
+
+##### email: stevieG@mail.com || password: 123
+
 ### Tech Stack:
 
 - React.JS (with React-Bootstrap & MaterialUI libraries)
