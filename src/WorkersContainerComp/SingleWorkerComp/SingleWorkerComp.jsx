@@ -127,9 +127,9 @@ const SingleWorkerComp = (props) => {
 
     return (
         <section className="single-worker">
-            <h4><b>{props.worker.firstName} {props.worker.lastName} ({props.worker.age})</b></h4>
+            <h5><b>{props.worker.firstName} {props.worker.lastName} ({props.worker.age})</b></h5>
             <img height='100px' width='100px' src={props.worker.img} alt='profile-thumbnail'></img>
-            <p><br/><b>Department:</b> {props.worker.department}</p>
+            <div><br/><b>Department:</b> <div className="dept">{props.worker.department}</div></div>
             <p><b>Salary:</b> {(props.worker.salary).toLocaleString("en-US", {style:"currency", currency:"USD"})}</p>
             <Button id='view-btn' onClick={()=>setLgShow(true)} variant="contained">
                 VIEW
