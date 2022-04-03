@@ -23,9 +23,13 @@ SUPERVISOR is an app for keeping track of your employees. You can add, edit and 
 
 - Quotes Inspirational Quotes Motivational Quotes API
 
+### Restful Routes:
+
+![routes](https://imgur.com/wH7GFw8 "restful routes")
+
 ### Aproach:
 
-Used react-routing, as well as react libraries for importing different components to elevate user experience. The whole app was built with minimal loading time in mind. Implemented 3rd party API quote of the day. Made a search and sort function with different arguments. The search and sort are filtering out states in real time and they can run simultaneously.
+Used react-routing, as well as react libraries for importing different components to elevate user experience. The whole app was built with minimal loading time in mind, and I tried to experiment with handling and filtering the data in the react states as much as possible, without unnecessary immediate requests to the back-end API. Implemented 3rd party API quote of the day. Made a search and sort function with changable arguments. The search and sort are executing in real time and they can run simultaneously.
 
 ### MVP:
 
