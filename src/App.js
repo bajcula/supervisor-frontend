@@ -19,8 +19,8 @@ function App() {
   const navigate = useNavigate()
   const [serverError, setServerError] = useState("");
   const [userIsValid, setUserIsValid] = useState(true);
-  const [quote, setQuote] = useState('The morning is wiser than the evening.');
-  const [author, setAuthor]= useState('Serbian proverb');
+  const [quote, setQuote] = useState('');
+  const [author, setAuthor]= useState('');
   const url = 'https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote?token=ipworld.info';
   const options = {
     method: 'GET',
