@@ -16,7 +16,7 @@ SUPERVISOR is an app for keeping track of your employees. You can add, edit and 
 
 ### User Flow:
 
-![user flow](https://i.imgur.com/aYR4utv.png "Supervisor user flow")
+![user flow](https://i.imgur.com/lAjKGtd.png "Supervisor user flow")
 
 ### Tech Stack:
 
