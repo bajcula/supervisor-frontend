@@ -14,6 +14,10 @@ SUPERVISOR is an app for keeping track of your employees. You can add, edit and 
 | ------------------ | :------: |
 | `stevieG@mail.com` |  `123`   |
 
+### User Flow:
+
+![user flow](https://i.imgur.com/i4eifFn.png "Supervisor user flow")
+
 ### Tech Stack:
 
 - React.JS (with React-Bootstrap & MaterialUI libraries)
