@@ -16,6 +16,7 @@ function App() {
         setServerError("")
     }, 8000)
   }
+
   const navigate = useNavigate()
   const [serverError, setServerError] = useState("");
   const [userIsValid, setUserIsValid] = useState(true);
@@ -103,6 +104,7 @@ const fetchQuote = async () => {
       const parsedResponse = await apiResponse.json()
       if (parsedResponse.success) {
         setServerError('Successfully deleted. Hope to see you again.')
+        localStorage.clear()
         navigate('/home')
       } else {
         setServerError(parsedResponse.data)
@@ -127,6 +129,7 @@ const fetchQuote = async () => {
     if (parsedResponse.success) {
       localStorage.setItem("user", JSON.stringify(parsedResponse.data))
       setServerError(`Password successfully updated.`)
+      navigate('/edit')
     } else {
       setServerError(parsedResponse.data)
     }
@@ -158,7 +161,10 @@ const fetchQuote = async () => {
     }
     resetStatus()
   }
- 
+  const passwordCheck = (str) => {
+    const pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$");
+    return pattern.test(str)
+  }
 
 
   useEffect(()=>{
@@ -187,6 +193,8 @@ const fetchQuote = async () => {
         </LoginComp>}>
         </Route>
         <Route exact path="/signup" element ={<RegisterComp
+          
+          passwordCheck={passwordCheck}
           addNewUser={addNewUser}
           userIsValid={userIsValid}
           setUserIsValid={setUserIsValid}
@@ -205,6 +213,7 @@ const fetchQuote = async () => {
 
         </Route>
         <Route exact path="/password" element ={<PasswordChangeComp
+        passwordCheck={passwordCheck}
         changePassword={changePassword}
         setServerError={setServerError}
         resetStatus={resetStatus}

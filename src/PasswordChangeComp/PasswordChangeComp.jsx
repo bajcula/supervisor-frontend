@@ -16,10 +16,15 @@ const PasswordChangeComp = (props) => {
     }
     const submissionChangePass = (e) => {
         e.preventDefault()
-        console.log(passwordsContainer)
-        console.log(passwordsContainer.newPass)
         if (passwordsContainer.newPass === passwordsContainer.newPassConf) {
-            props.changePassword(theCurrentUser._id, passwordsContainer.oldPass, passwordsContainer.newPass)
+            if (props.passwordCheck(passwordsContainer.newPass)) {
+                props.changePassword(theCurrentUser._id, passwordsContainer.oldPass, passwordsContainer.newPass)
+            } else {
+                props.setServerError("Your new password needs to contain at least one lowercase, one uppercase and one number.")
+                setTimeout(()=>{
+                    props.setServerError("")
+                }, 8000)
+            }
         } else {
             props.setServerError("Your new password fields do not match.")
             setTimeout(()=>{
@@ -30,8 +35,6 @@ const PasswordChangeComp = (props) => {
 
     return (
         <div id='edit-pass-div'>
-            <h3>Change password:</h3><br/>
-
             <form>
                 <div>
                 Type your old password:<br/>
@@ -47,7 +50,10 @@ const PasswordChangeComp = (props) => {
                 </div>
                 <Button id='submit-edit-btn' variant="contained" onClick={submissionChangePass} type="submit">Submit change</Button>
             </form>
-
+            <div className="requirements">
+                <h6>PASSWORD REQUIREMENTS:</h6>
+                <p>For your own security, your new password must contain one lowercase, one uppercase and one number.</p>
+            </div>
         </div>
 
     )

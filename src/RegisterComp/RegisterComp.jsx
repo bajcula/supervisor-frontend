@@ -9,6 +9,11 @@ const RegisterComp = (props) => {
     if (localStorage.getItem('user')) {
         navigate('/home')
     }
+    const resetValidStatus = () => {
+        setTimeout(()=>{
+            props.setUserIsValid("")
+        }, 8000)
+    }
     const [newUser, setNewUser] = useState({
         firstName: "",
         lastName: "",
@@ -22,20 +27,50 @@ const RegisterComp = (props) => {
             [e.target.name]: e.target.value
         })
     }
+
     const submissionNewUser = (e) => {
         e.preventDefault()
         let validSubmission = true
         if (newUser.firstName.length < 2) {
             props.setUserIsValid({
                 valid:false,
-                message: "Sorry, your first name can't be a single character."
+                message: "Your first name can't be a single character."
             })
             validSubmission = false
         }
         if (newUser.lastName.length < 2) {
             props.setUserIsValid({
                 valid:false,
-                message: "Sorry, your last name can't be a single character."
+                message: "Your last name can't be a single character."
+            })
+            validSubmission = false
+        }
+        if (!newUser.email.includes("@")) {
+            props.setUserIsValid({
+                valid:false,
+                message: "Email must include '@' symbol."
+            })
+            validSubmission = false
+        }
+        if (newUser.password.length < 8) {
+            props.setUserIsValid({
+                valid:false,
+                message: "Your password must be at least 8 characters long."
+            })
+            validSubmission = false
+        }
+        // password validation
+        if (!props.passwordCheck(newUser.password)) {
+            props.setUserIsValid({
+                valid:false,
+                message: "Your password must contain at least one lowercase letter, uppercase letter, and number."
+            })
+            validSubmission = false
+        }
+        if (newUser.lastName.length < 2) {
+            props.setUserIsValid({
+                valid:false,
+                message: "Your last name can't be a single character."
             })
             validSubmission = false
         }
@@ -53,6 +88,7 @@ const RegisterComp = (props) => {
                 message:""
             })
         }
+        resetValidStatus()
         validSubmission = true
     }
 
@@ -60,8 +96,8 @@ const RegisterComp = (props) => {
         <div id='register-container'>
             <h3 className="page-title">Sign Up</h3>
             <section className="form-container">
-                <form className="new-user-form-container" action="/users" method="POST" encType="multipart/form-data">
-
+                <form className="new-user-form-container" >
+                    { props.userIsValid.valid ? null : <p className="err-msg">{props.userIsValid.message}</p> } 
                     <div className="form-row-container">
                         <label htmlFor="firstName">First Name:</label>
                         <input onChange={handleNewUserInputChange} type="text" name="firstName" required/>
@@ -92,7 +128,9 @@ const RegisterComp = (props) => {
 
                 </form>
             </section>
-
+            <div className="requirements">
+                <p>REQUIREMENTS:<br/> Your first and last name need to be at least 2 characters long. For your own security, your password must include at least one lowercase, one uppercase and one number.</p>
+            </div>
         </div>
     )
 }

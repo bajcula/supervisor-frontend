@@ -2,3 +2,21 @@
   width: 80%;
   max-width: 400px;
 }
+.err-msg {
+  font-weight: 600;
+  font-size: 12px;
+}
+.requirements {
+  margin: 20px;
+  font-size: 12px;
+  max-width: 400px;
+}
+.requirements p {
+  text-align: center;
+}
+#register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
